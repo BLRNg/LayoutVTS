@@ -1,0 +1,1837 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Local link -->
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="./Css/style.css" /> -->
+    <style>
+          :root {
+      --color-white: #fff;
+      --color-white-100: rgba(255, 255, 255, 0.1);
+      --color-white-200: rgba(255, 255, 255, 0.2);
+      --color-white-400: rgba(255, 255, 255, 0.4);
+      --color-white-800: rgba(255, 255, 255, 0.8);
+      --color-white-900: rgba(255, 255, 255, 0.9);
+      --color-black: #1e1e1e;
+      --color-black-100: rgba(0, 0, 0, 0.1);
+      --color-black-50: rgba(211, 197, 197, 0.39);
+      --color-black-200: rgba(0, 0, 0, 0.2);
+      --color-black-500: rgba(0, 0, 0, 0.5);
+      --color-black-600: rgba(0, 0, 0, 0.6);
+      --color-blue-800: #007ff7;
+      --app-color-white: rgb(252, 255, 251);
+      --color-red: rgba(255, 2, 2, 0.788);
+      --color-green: #11dd4e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      border: 0;
+      list-style: none;
+    }
+
+    @media screen and (max-width: 900px) {
+      .hidden {
+        display: none;
+      }
+    }
+
+    button,
+    input {
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      height: 100vh;
+      user-select: none;
+      font-family: "Lexend", sans-serif;
+      background: url(https://images.pexels.com/photos/2101187/pexels-photo-2101187.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat;
+      background-size: cover;
+      overflow: hidden;
+    }
+
+    .dock {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      padding: 0.2rem 0.5rem 0 0.5rem;
+      bottom: 3%;
+      left: 50%;
+      height: 65px;
+      transform: translateX(-50%);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--color-white-200);
+      border-radius: 14px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.555);
+      z-index: 10;
+    }
+
+    @media screen and (max-width: 900px) {
+      .dock {
+        border-radius: 20px;
+      }
+    }
+
+    .dock .point {
+      width: 6px;
+      height: 6px;
+      margin: 0;
+      background: #f08080;
+      border-radius: 50%;
+      display: none;
+      animation: top-to-bottom 0.3s;
+      transition: 0.3s;
+    }
+
+    .dock .column {
+      width: 1px;
+      height: 45px;
+      margin: 0 4px;
+      background: var(--color-white-400);
+    }
+
+    .dock .icon {
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: none;
+      border: none;
+      outline: none;
+      transition: all 0.3s;
+      transform: translate3d(0px, 0%, 0px);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .dock .icon::after {
+      font-size: 15px;
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.39);
+      top: -25%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      width: 95px;
+      height: 25px;
+      padding: 4px 3px 10px;
+      border-radius: 8px;
+      font-family: "lexend", sans-serif;
+      font-weight: 700;
+      clip-path: polygon(
+        100% 0%,
+        100% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 80%,
+        43% 80%,
+        50% 101%,
+        57% 80%,
+        100% 80%,
+        100% 0%
+      );
+    }
+
+    
+    .dock .icon svg,
+    .dock .icon img {
+      width: 1.6rem;
+      transition: 0.2s;
+      transform: translateY(-2.5px);
+    }
+
+    .dock .icon:hover svg,
+    .dock .icon:hover img {
+      margin: 0 0 40px 0;
+      width: 7.1rem;
+    }
+    .dock .icon:hover + .icon svg,
+    .dock .icon:hover + .icon img {
+      width: 5.6rem;
+      margin: 0 0 25px 0;
+    }
+
+    .dock .icon svg:active,
+    .dock .icon img:active {
+      filter: brightness(0.6) drop-shadow(0 0 10px #2c2c2c);
+    }
+
+
+
+    .color_green {
+      color: green;
+    }
+
+    .color_blue {
+      color: #1f48ff;
+    }
+
+
+    .spotlight_serach {
+      width: 400px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      border: 1px solid var(--color-white-100);
+      justify-content: start;
+      border-radius: 8px;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      box-shadow: 0 10px 10px rgba(37, 37, 37, 0.137);
+    }
+    .spotlight_serach svg {
+      margin-left: 10px;
+    }
+    .spotlight_serach input {
+      width: 90%;
+      font-size: 20px;
+      font-weight: 100;
+      font-family: Lexend;
+      margin-left: 10px;
+      padding-right: 10px;
+    }
+    .spotlight_serach input::placeholder {
+      color: white;
+    }
+
+    .launchpad {
+      display: none;
+      animation: opacity 300ms;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      position: relative;
+    }
+
+    .prev-button,
+    .next-button {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Adjust size as needed */
+    }
+
+    .prev-button {
+    left: 0;
+    top: 38%;
+    transform: translateY(-50%);
+    }
+
+    .prev-button:hover {
+     color:  rgb(175, 173, 173);
+    }
+
+    .next-button {
+    right: 0;
+    top: 38%;
+    transform: translateY(-50%);
+    }
+
+    .next-button:hover {
+        color:  rgb(175, 173, 173);;
+    }
+
+
+
+    .searchbox {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .searchbox .searchContainer {
+      height: 30px;
+      width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      border-top: 1px solid rgba(255, 255, 255, 0.582);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.582);
+      border-right: 1px solid rgba(255, 255, 255, 0.219);
+      border-left: 1px solid rgba(255, 255, 255, 0.219);
+      border-radius: 4px;
+      padding: 0 3px;
+    }
+
+    .searchbox .searchContainer svg {
+      fill: #fff;
+    }
+
+    .searchbox input {
+      text-align: center;
+      color: #fff;
+      font-size: 17px;
+      height: 100%;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .searchbox input::placeholder {
+      color: #fff;
+      font-weight: 100;
+    }
+
+    .searchbox input:focus {
+      text-align: left;
+    }
+
+    .Apps-container {
+      width: 90%;
+      height: 60%;
+      margin: 0 auto;
+      display: grid;
+      grid-row-gap: 10px;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 25% 25% 25% 25%;
+    }
+
+    .launchpad .child-launchpad {
+      display: flex;
+      place-items: center;
+      flex-direction: column;
+      cursor:  pointer;
+    }
+
+    .launchpad .child-launchpad img {
+      width: 80px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      .launchpad .Apps-container {
+        grid-row-gap: 20px;
+      }
+      .launchpad .child-launchpad img {
+        width: 80px;
+      }
+      .launchpad .child-launchpad strong {
+        font-size: 18px;
+      }
+    }
+
+    .launchpad .child-launchpad:active {
+      animation: vibrate 0.1s ease-in forwards infinite alternate;
+      transition: transform 0.1s cubic-bezier(0.42, 0, 1, 0.2);
+    }
+
+    .launchpad .child-launchpad strong {
+      color: #fff;
+    }
+
+
+    /******Animations*****/
+
+    @keyframes zoom-out {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes to-top-bottom {
+      0% {
+        transform: translate(0);
+      }
+      25% {
+        transform: translateY(-12px);
+      }
+      50% {
+        transform: translateY(-3px);
+      }
+      75% {
+        transform: translateY(-21px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes vibrate {
+      0% {
+        transform: rotate(9deg);
+      }
+      100% {
+        transform: rotate(-9deg);
+      }
+    }
+
+    @keyframes top-to-bottom {
+      0% {
+        transform: translateY(-60px);
+        opacity: 0;
+      }
+      100% {
+        transform: none;
+        opacity: 1;
+      }
+    }
+    @keyframes opacity {
+      0% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+     /******Context menu*****/
+     
+    .context-menu {
+      padding: 0 3px;
+      position: absolute;
+      border-radius: 7px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.219);
+      border: 1px solid rgba(255, 255, 255, 0.281);
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+    }
+
+    .context-menu ul {
+      padding: 0;
+      margin: 0;
+      min-width: 250px;
+      list-style: none;
+    }
+
+    .context-menu ul li {
+      margin: 4px 0;
+      border-bottom: 1px solid rgba(65, 64, 64, 0.288);
+    }
+
+    .context-menu ul li:last-child {
+      border: none;
+    }
+
+    .context-menu ul li button {
+      color: var(--color-white);
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      font-size: 15px;
+      font-family: "Lexend", sans-serif;
+      border-radius: 5px;
+      padding: 4px 8px;
+      transition: 80ms;
+      font-weight: 300;
+      margin: 0 0 4px 0;
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+    }
+    .context-menu ul button:hover {
+      background: var(--color-blue-800);
+    }
+
+
+      /* Widgets panel */
+      .widgets-panel {
+        position: fixed;
+        top: 35%;
+        left: 30%;
+        transform: translateX(115%);
+        transition: all 0.3s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+        backdrop-filter: blur(1rem);
+        border: 1px solid var(--color-white-200);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.555);
+      }
+      .widgets-panel.open {
+        transform: translateX(0);
+      }
+      .widgets-panel__calendar {
+        background: transparent;
+        padding: 16px;
+        min-width: 700px;
+        min-height: 400px;
+      }
+      .widgets-panel #taghvim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .widgets-panel__calendar h4 {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-left: 8px;
+        margin-bottom: -10px;
+      }
+      .widgets-panel__calendar h2 {
+        color: #ffffff;
+        font-size: 45px;
+        font-weight: 300;
+      }
+      .widgets-panel__calendar li {
+        position: relative;
+        padding: 4px 10px;
+        font-size: 15px;
+        border-radius: 4px;
+        margin-left: 8px;
+        margin: 8px 0;
+      }
+      .widgets-panel__calendar li::before {
+        content: "";
+        width: 8px;
+        height: calc(100% - 2px);
+        position: absolute;
+        border-radius: 99px;
+        top: 2px;
+        left: -12px;
+      }
+      .widgets-panel__calendar li.blue {
+        color: #34aadc;
+        background: #283646;
+      }
+      .widgets-panel__calendar li.blue::before {
+        background: #34aadc;
+      }
+      .widgets-panel__calendar li.green {
+        color: #32d74b;
+        background: #2d402e;
+      }
+      .widgets-panel__calendar li.green::before {
+        background: #32d74b;
+      }
+      .widgets-panel__calendar li.purple {
+        color: #9c5ffd;
+        background: #422948;
+      }
+      .widgets-panel__calendar li.purple::before {
+        background: #7a3edb;
+      }
+      .widgets-panel__calendar li span {
+        display: block;
+      }
+      .widgets-panel__calendar li span:first-child {
+        font-weight: bold;
+      }
+
+      /* Container app */
+
+      .container__Window {
+        width: 100%;
+        height: 100%;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        display: none; 
+      }
+
+      .window {
+      /* display: none; */
+      min-width: 100%;
+      min-height: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: transparent;
+      box-shadow: 0 20px 30px var(--color-black-500);
+      border: 1px solid #ffffff34;
+      animation: zoom-out 0.3s;
+      z-index: 100;
+      touch-action: none;
+    }
+
+    .window__taskbar {
+    height: 12%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: var(--app-color-white);
+  }
+
+  .window__taskbar--actions {
+  display: flex;
+  align-items: center;
+  }
+
+  .window__taskbar:hover button::after {
+    color: #000;
+  }
+
+  .window__taskbar--actions button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0.8rem;
+    height: 0.8rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  .window__taskbar--actions button:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .window__taskbar--actions button:nth-child(1) {
+    background-color: #ff5f56;
+    box-shadow: 0 0 0 0.5px #e0443e;
+  }
+
+  .window__taskbar--actions button::after {
+    display: block;
+    font-size: 14px;
+    color: transparent;
+    font-weight: 900;
+  }
+
+  .window__taskbar--actions button:nth-child(1)::after {
+    content: "×";
+  }
+
+  .window__taskbar--actions button:nth-child(1):hover {
+    background-color: #fc3c32;
+  }
+
+  .window__taskbar--actions button:nth-child(2) {
+    background-color: #ffbd2e;
+    box-shadow: 0 0 0 0.5px #dea123;
+  }
+
+  .window__taskbar--actions button:nth-child(2)::after {
+    content: "−";
+  }
+
+  .window__taskbar--actions button:nth-child(2):hover {
+    background-color: #ffa600;
+  }
+
+  .window__taskbar--actions button:nth-child(3) {
+    background-color: #27c93f;
+    box-shadow: 0 0 0 0.5px #1aab29;
+  }
+
+  .window__taskbar--actions button:nth-child(3)::after {
+    content: "⤡";
+  }
+
+  .window__taskbar--actions button:nth-child(3):hover {
+    background-color: #12aa29;
+  }
+
+  .window__taskbar--content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .window__taskbar--content h2 {
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .window__taskbar {
+    height: 3%;
+  }
+
+  .window_content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  /* padding-left: 1rem; */
+  background-color: #9c9c9c;
+  backdrop-filter: blur(120px);
+  color: rgb(235, 235, 235);
+  font-size: 20px;
+  font-family: "Roboto Mono", monospace;
+}
+
+    /* Mobile devices (portrait and landscape) */
+    @media (max-width: 600px) {
+      .dock .icon svg,
+        .dock .icon img {
+          width: 2rem;
+         
+        }
+
+        .widgets-panel {
+          left: 0%;
+          right: 0%;
+        }
+        .widgets-panel__calendar{
+          min-width: 380px;
+          min-height: 300px;
+        }
+    }
+
+      /* Tablets and small desktops */
+      @media (min-width: 601px) and (max-width: 1024px) {
+        .dock .icon svg,
+        .dock .icon img {
+          width: 3.6rem;
+        
+        }
+
+        .widgets-panel {
+          left: 10%;
+          right: 10%;
+        }
+        .widgets-panel__calendar{
+          min-width: 450px;
+          min-height: 300px;
+        }
+      }
+
+      /* Large desktops */
+      @media (min-width: 1025px) {
+        .dock .icon svg,
+        .dock .icon img {
+          width: 4.6rem;
+         
+        }
+
+        .widgets-panel {
+          left: 30%;
+          right: 30%;
+        }
+        .widgets-panel__calendar{
+          min-width: 450px;
+          min-height: 350px;
+        }
+      }
+
+
+    
+
+   
+
+
+    </style>
+    <style>
+      
+      .dock .icon:nth-child(1) svg {
+        background-color: #11dd4e;
+      }
+      .dock .icon:nth-child(4)::after {
+        content: "App store";
+      }
+
+   
+
+      .launchpad .child-launchpad svg{
+        height: 70px;
+        width: 70px;
+        border: 1px solid var(--color-white-200);
+        border-radius: 14px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.555);
+      }
+
+      .launchpad .child-launchpad strong{
+        font-size: 10px;
+      }
+
+
+    
+         
+    </style>
+  </head>
+  
+  <body >
+    
+
+
+    <div id="contextMenu" class="context-menu" style="opacity: 0; transition: 0.2s;">
+      <ul>
+        <li >
+          <button id="actionPinToTaskbar" onclick="handlePinToTaskbarClick()">Pin to taskbar</button>
+        </li>
+        <li>
+          <button id="actionOpen">Open</button>
+        </li>
+      </ul>
+    </div>
+
+    <div id="contextMenuDock" class="context-menu" style="opacity: 0; transition: 0.2s;">
+      <ul>
+        <li >
+          <button id="actionPinToTaskbar" onclick="handleUnpinToTaskbarClick()">Unpin to taskbar</button>
+        </li>
+        <li>
+          <button id="actionOpen">Open</button>
+        </li>
+      </ul>
+    </div>
+
+    <!--Dock start-->
+
+    <div class="dock">
+      
+    </div>
+    <!--DOCK end-->
+
+    <!--LAUNCHPAD start-->
+    <div class="launchpad" id="launchpad">
+        <button class="prev-button"><i class="fas fa-chevron-left"></i></button>
+        <button class="next-button"><i class="fas fa-chevron-right"></i></button>
+      <div class="searchbox">
+        <div class="searchContainer">
+          <svg width="24" height="24">
+            <path
+              d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
+            ></path>
+          </svg>
+          <input
+          class="search-input"
+            type="search"
+            name="search"
+            placeholder="Search"
+            accesskey="s"
+          />
+        </div>
+      </div>
+      <div class="Apps-container">
+      </div>
+    </div>
+    <!--LAUNCHPAD end-->
+
+    <div class="container__Window">
+          <!-- Terminal -->
+          <div class="window employee">
+            <div class="window__taskbar">
+              <div class="window__taskbar--actions">
+                <button class="close"></button>
+                <button class="backfull"></button>
+                <button class="full"></button>
+              </div>
+              <div class="window__taskbar--content">
+                <h2>Employee</h2>
+              </div>
+            </div>
+            <div class="window_content">
+              <div class="container">
+                <header>
+                  <div class="header-left">
+                      <button class="menu-button">&#9776;</button>
+                      <img src="https://phanmemtinhluong.com/wp-content/uploads/2023/11/cropped-ParadiseHRCopyRight.png" alt="Logo" class="logo">
+                      <div class="search-container">
+                        <i class="search-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80541 2.93994C6.01372 2.93994 2.93994 6.01372 2.93994 9.80541C2.93994 13.5971 6.01372 16.6709 9.80541 16.6709C13.5971 16.6709 16.6709 13.5971 16.6709 9.80541C16.6709 6.01372 13.5971 2.93994 9.80541 2.93994ZM1.68994 9.80541C1.68994 5.32336 5.32336 1.68994 9.80541 1.68994C14.2875 1.68994 17.9209 5.32336 17.9209 9.80541C17.9209 14.2875 14.2875 17.9209 9.80541 17.9209C5.32336 17.9209 1.68994 14.2875 1.68994 9.80541Z" fill="#21252B"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5727 14.9628C14.8164 14.7184 15.2121 14.7179 15.4565 14.9617L18.3932 17.8907C18.6376 18.1345 18.6381 18.5302 18.3944 18.7746C18.1506 19.019 17.7549 19.0195 17.5105 18.7758L14.5738 15.8467C14.3294 15.6029 14.3289 15.2072 14.5727 14.9628Z" fill="#21252B"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80541 2.93994C6.01372 2.93994 2.93994 6.01372 2.93994 9.80541C2.93994 13.5971 6.01372 16.6709 9.80541 16.6709C13.5971 16.6709 16.6709 13.5971 16.6709 9.80541C16.6709 6.01372 13.5971 2.93994 9.80541 2.93994ZM1.68994 9.80541C1.68994 5.32336 5.32336 1.68994 9.80541 1.68994C14.2875 1.68994 17.9209 5.32336 17.9209 9.80541C17.9209 14.2875 14.2875 17.9209 9.80541 17.9209C5.32336 17.9209 1.68994 14.2875 1.68994 9.80541Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5727 14.9628C14.8164 14.7184 15.2121 14.7179 15.4565 14.9617L18.3932 17.8907C18.6376 18.1345 18.6381 18.5302 18.3944 18.7746C18.1506 19.019 17.7549 19.0195 17.5105 18.7758L14.5738 15.8467C14.3294 15.6029 14.3289 15.2072 14.5727 14.9628Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>      
+                        </i>
+                        <input type="text" class="search-input-windown" placeholder="Tìm kiếm">
+                    </div>
+                  </div>
+                  <div class="header-right">
+                      <div class="user-info">
+                        <div class="notifications">
+                            <i>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.02 20.5299C9.68999 20.5299 7.35999 20.1599 5.14999 19.4199C4.30999 19.1299 3.66999 18.5399 3.38999 17.7699C3.09999 16.9999 3.19999 16.1499 3.65999 15.3899L4.80999 13.4799C5.04999 13.0799 5.26999 12.2799 5.26999 11.8099V8.91992C5.26999 5.19992 8.29999 2.16992 12.02 2.16992C15.74 2.16992 18.77 5.19992 18.77 8.91992V11.8099C18.77 12.2699 18.99 13.0799 19.23 13.4899L20.37 15.3899C20.8 16.1099 20.88 16.9799 20.59 17.7699C20.3 18.5599 19.67 19.1599 18.88 19.4199C16.68 20.1599 14.35 20.5299 12.02 20.5299ZM12.02 3.66992C9.12999 3.66992 6.76999 6.01992 6.76999 8.91992V11.8099C6.76999 12.5399 6.46999 13.6199 6.09999 14.2499L4.94999 16.1599C4.72999 16.5299 4.66999 16.9199 4.79999 17.2499C4.91999 17.5899 5.21999 17.8499 5.62999 17.9899C9.80999 19.3899 14.24 19.3899 18.42 17.9899C18.78 17.8699 19.06 17.5999 19.19 17.2399C19.32 16.8799 19.29 16.4899 19.09 16.1599L17.94 14.2499C17.56 13.5999 17.27 12.5299 17.27 11.7999V8.91992C17.27 6.01992 14.92 3.66992 12.02 3.66992Z" fill="#21252B"/>
+                                <path d="M13.88 3.93993C13.81 3.93993 13.74 3.92993 13.67 3.90993C13.38 3.82993 13.1 3.76993 12.83 3.72993C11.98 3.61993 11.16 3.67993 10.39 3.90993C10.11 3.99993 9.80999 3.90993 9.61999 3.69993C9.42999 3.48993 9.36999 3.18993 9.47999 2.91993C9.88999 1.86993 10.89 1.17993 12.03 1.17993C13.17 1.17993 14.17 1.85993 14.58 2.91993C14.68 3.18993 14.63 3.48993 14.44 3.69993C14.29 3.85993 14.08 3.93993 13.88 3.93993Z" fill="#21252B"/>
+                                <path d="M12.02 22.8101C11.03 22.8101 10.07 22.4101 9.37002 21.7101C8.67002 21.0101 8.27002 20.0501 8.27002 19.0601H9.77002C9.77002 19.6501 10.01 20.2301 10.43 20.6501C10.85 21.0701 11.43 21.3101 12.02 21.3101C13.26 21.3101 14.27 20.3001 14.27 19.0601H15.77C15.77 21.1301 14.09 22.8101 12.02 22.8101Z" fill="#21252B"/>
+                                </svg>                    
+                            </i>
+                            <p class="pool-ball">
+                                <span class="number"></span>
+                            </p>
+                        </div>
+                        <div class="profile">
+                            <img src="https://via.placeholder.com/32" alt="User Profile">
+                            <i>
+                              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.08754 0.837602C1.31535 0.609797 1.68469 0.609797 1.9125 0.837602L5.00002 3.92512L8.08754 0.837602C8.31535 0.609797 8.68469 0.609797 8.9125 0.837602C9.14031 1.06541 9.14031 1.43475 8.9125 1.66256L5.4125 5.16256C5.18469 5.39037 4.81535 5.39037 4.58754 5.16256L1.08754 1.66256C0.859736 1.43475 0.859736 1.06541 1.08754 0.837602Z" fill="#21252B"/>
+                              </svg>
+                          </i>
+                        </div>
+                      </div>
+                  </div>
+              </header>
+                <div class="sidebar active">
+                 
+                  <div class="nav">
+                    <div class="menu">
+                      <p class="title">Main</p>
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <i class="icon ph-bold"> 
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.4781 8.24176V8.24175H16.475H13.1083C12.4831 8.24175 12.1731 8.12719 12.0137 7.98607C11.8699 7.85888 11.75 7.6201 11.75 7.09175V3.31675C11.75 2.7936 11.8695 2.55367 12.0144 2.4249C12.1744 2.28273 12.4849 2.16675 13.1083 2.16675H16.475C17.0985 2.16675 17.4089 2.28273 17.5689 2.4249C17.7139 2.55367 17.8333 2.7936 17.8333 3.31675V7.10008C17.8333 7.6236 17.7137 7.86276 17.5697 7.99024C17.4107 8.13089 17.1013 8.24568 16.4781 8.24176Z" fill="#989FAB" stroke="#989FAB"/>
+                            <path d="M17.8333 13.1083V16.475C17.8333 17.0874 17.7071 17.3879 17.5475 17.5475C17.3879 17.7071 17.0874 17.8333 16.475 17.8333H13.1083C12.4959 17.8333 12.1955 17.7071 12.0358 17.5475C11.8762 17.3879 11.75 17.0874 11.75 16.475V13.1083C11.75 12.4959 11.8762 12.1955 12.0358 12.0358C12.1955 11.8762 12.4959 11.75 13.1083 11.75H16.475C17.0874 11.75 17.3879 11.8762 17.5475 12.0358C17.7071 12.1955 17.8333 12.4959 17.8333 13.1083Z" fill="#989FAB" stroke="#989FAB"/>
+                            <path d="M6.89489 8.24176V8.24175H6.89175H3.52508C2.89983 8.24175 2.58986 8.12719 2.43041 7.98607C2.28669 7.85888 2.16675 7.6201 2.16675 7.09175V3.31675C2.16675 2.7936 2.28621 2.55367 2.43114 2.4249C2.59115 2.28273 2.90161 2.16675 3.52508 2.16675H6.89175C7.51522 2.16675 7.82568 2.28273 7.98569 2.4249C8.13062 2.55367 8.25008 2.7936 8.25008 3.31675V7.10008C8.25008 7.6236 8.13046 7.86276 7.98642 7.99024C7.8275 8.13089 7.51808 8.24568 6.89489 8.24176Z" fill="#989FAB" stroke="#989FAB"/>
+                            <path d="M8.25008 13.1083V16.475C8.25008 17.0874 8.12387 17.3879 7.96424 17.5475C7.8046 17.7071 7.50417 17.8333 6.89175 17.8333H3.52508C2.91266 17.8333 2.61223 17.7071 2.45259 17.5475C2.29296 17.3879 2.16675 17.0874 2.16675 16.475V13.1083C2.16675 12.4959 2.29296 12.1955 2.45259 12.0358C2.61223 11.8762 2.91266 11.75 3.52508 11.75H6.89175C7.50417 11.75 7.8046 11.8762 7.96424 12.0358C8.12387 12.1955 8.25008 12.4959 8.25008 13.1083Z" fill="#989FAB" stroke="#989FAB"/>
+                            </svg>
+                            </i>
+                            <span class="text">Dashboard</span>
+                            <p class="pool-ball">
+                              <span class="number">8</span>
+                          </p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="icon ">
+                      
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9.86532 8.93311L9.92368 8.93516L9.96123 8.92765C9.96825 8.92738 9.97828 8.92716 9.99123 8.92716C10.0261 8.92716 10.0695 8.92873 10.1112 8.93194L10.1418 8.9343L10.1725 8.93289C12.0744 8.84556 13.5649 7.28295 13.5746 5.36927H13.5746V5.36675C13.5746 3.39894 11.9674 1.79175 9.99956 1.79175C8.03175 1.79175 6.42456 3.39894 6.42456 5.36675C6.42456 7.30297 7.9381 8.86531 9.86532 8.93311ZM10.1329 9.18341H10.1327H10.1326H10.1325H10.1323H10.1322H10.132H10.1319H10.1317H10.1316H10.1314H10.1313H10.1311H10.131H10.1309H10.1307H10.1306H10.1304H10.1303H10.1301H10.13H10.1299H10.1297H10.1296H10.1294H10.1293H10.1291H10.129H10.1289H10.1287H10.1286H10.1284H10.1283H10.1282H10.128H10.1279H10.1277H10.1276H10.1275H10.1273H10.1272H10.127H10.1269H10.1268H10.1266H10.1265H10.1263H10.1262H10.1261H10.1259H10.1258H10.1257H10.1255H10.1254H10.1252H10.1251H10.125H10.1248H10.1247H10.1246H10.1244H10.1243H10.1241H10.124H10.1239H10.1237H10.1236H10.1235H10.1233H10.1232H10.1231H10.1229H10.1228H10.1227H10.1225H10.1224H10.1223H10.1221H10.122H10.1219H10.1217H10.1216H10.1215H10.1213H10.1212H10.1211H10.1209H10.1208H10.1207H10.1205H10.1204H10.1203H10.1201H10.12H10.1199H10.1197H10.1196H10.1195H10.1193H10.1192H10.1191H10.1189H10.1188H10.1187H10.1186H10.1184H10.1183H10.1182H10.118H10.1179H10.1178H10.1176H10.1175H10.1174H10.1173H10.1171H10.117H10.1169H10.1167H10.1166H10.1165H10.1163H10.1162H10.1161H10.116H10.1158H10.1157H10.1156H10.1154H10.1153H10.1152H10.1151H10.1149H10.1148H10.1147H10.1146H10.1144H10.1143H10.1142H10.114H10.1139H10.1138H10.1137H10.1135H10.1134H10.1133H10.1132H10.113H10.1129H10.1128H10.1126H10.1125H10.1124H10.1123H10.1121H10.112H10.1119H10.1118H10.1116H10.1115H10.1114H10.1113H10.1111H10.111H10.1109H10.1108H10.1106H10.1105H10.1104H10.1103H10.1101H10.11H10.1099H10.1098H10.1096H10.1095H10.1094H10.1093H10.1091H10.109H10.1089H10.1088H10.1086H10.1085H10.1084H10.1083H10.1081H10.108H10.1079H10.1078H10.1077H10.1075H10.1074H10.1073H10.1072H10.107H10.1069H10.1068H10.1067H10.1065H10.1064H10.1063H10.1062H10.106H10.1059H10.1058H10.1057H10.1056H10.1054H10.1053H10.1052H10.1051H10.1049H10.1048H10.1047H10.1046H10.1045H10.1043H10.1042H10.1041H10.104H10.1038H10.1037H10.1036H10.1035H10.1033H10.1032H10.1031H10.103H10.1029C10.0319 9.17498 9.95953 9.17556 9.89339 9.18229C7.76289 9.0969 6.17456 7.42293 6.17456 5.36675C6.17456 3.25956 7.89237 1.54175 9.99956 1.54175C12.1064 1.54175 13.824 3.25903 13.8246 5.36578C13.8168 7.43841 12.1985 9.1132 10.1496 9.18341H10.1496H10.1495H10.1495H10.1494H10.1494H10.1493H10.1493H10.1493H10.1492H10.1492H10.1491H10.1491H10.149H10.149H10.1489H10.1489H10.1488H10.1488H10.1487H10.1487H10.1486H10.1486H10.1485H10.1485H10.1484H10.1484H10.1483H10.1483H10.1482H10.1482H10.1481H10.1481H10.148H10.148H10.1479H10.1479H10.1478H10.1478H10.1477H10.1477H10.1476H10.1476H10.1475H10.1475H10.1474H10.1474H10.1473H10.1473H10.1472H10.1472H10.1472H10.1471H10.1471H10.147H10.147H10.1469H10.1469H10.1468H10.1468H10.1467H10.1467H10.1466H10.1466H10.1465H10.1465H10.1464H10.1464H10.1463H10.1463H10.1462H10.1462H10.1461H10.1461H10.146H10.146H10.1459H10.1459H10.1458H10.1458H10.1457H10.1457H10.1456H10.1456H10.1455H10.1455H10.1454H10.1454H10.1453H10.1453H10.1452H10.1452H10.1451H10.1451H10.1451H10.145H10.145H10.1449H10.1449H10.1448H10.1448H10.1447H10.1447H10.1446H10.1446H10.1445H10.1445H10.1444H10.1444H10.1443H10.1443H10.1442H10.1442H10.1441H10.1441H10.144H10.144H10.1439H10.1439H10.1438H10.1438H10.1437H10.1437H10.1436H10.1436H10.1435H10.1435H10.1434H10.1434H10.1433H10.1433H10.1432H10.1432H10.1431H10.1431H10.1431H10.143H10.143H10.1429H10.1429H10.1428H10.1428H10.1427H10.1427H10.1426H10.1426H10.1425H10.1425H10.1424H10.1424H10.1423H10.1423H10.1422H10.1422H10.1421H10.1421H10.142H10.142H10.1419H10.1419H10.1418H10.1418H10.1417H10.1417H10.1416H10.1416H10.1415H10.1415H10.1414H10.1414H10.1413H10.1413H10.1412H10.1412H10.1411H10.1411H10.141H10.141H10.141H10.1409H10.1409H10.1408H10.1408H10.1407H10.1407H10.1406H10.1406H10.1405H10.1405H10.1404H10.1404H10.1403H10.1403H10.1402H10.1402H10.1401H10.1401H10.14H10.14H10.1399H10.1399H10.1398H10.1398H10.1397H10.1397H10.1396H10.1396H10.1395H10.1395H10.1394H10.1394H10.1393H10.1393H10.1392H10.1392H10.1391H10.1391H10.139H10.139H10.1389H10.1389H10.1389H10.1388H10.1388H10.1387H10.1387H10.1386H10.1386H10.1385H10.1385H10.1384H10.1384H10.1383H10.1383H10.1382H10.1382H10.1381H10.1381H10.138H10.138H10.1379H10.1379H10.1378H10.1378H10.1377H10.1377H10.1376H10.1376H10.1375H10.1375H10.1374H10.1374H10.1373H10.1373H10.1372H10.1372H10.1371H10.1371H10.137H10.137H10.1369H10.1369H10.1368H10.1368H10.1368H10.1367H10.1367H10.1366H10.1366H10.1365H10.1365H10.1364H10.1364H10.1363H10.1363H10.1362H10.1362H10.1361H10.1361H10.136H10.136H10.1359H10.1359H10.1358H10.1358H10.1357H10.1357H10.1356H10.1356H10.1355H10.1355H10.1354H10.1354H10.1353H10.1353H10.1352H10.1352H10.1351H10.1351H10.135H10.135H10.1349H10.1349H10.1348H10.1348H10.1347H10.1347H10.1347H10.1346H10.1346H10.1345H10.1345H10.1344H10.1344H10.1343H10.1343H10.1342H10.1342H10.1341H10.1341H10.134H10.134H10.1339H10.1339H10.1338H10.1338H10.1337H10.1337H10.1336H10.1336H10.1335H10.1335H10.1334H10.1334H10.1333H10.1333H10.1332H10.1332H10.1331H10.1331H10.133H10.133H10.1329H10.1329Z" fill="#292D32" stroke="#989FAB"/>
+                              <path d="M5.90331 17.1264L5.90332 17.1264L5.90064 17.1246C4.84849 16.4283 4.33301 15.5204 4.33301 14.5833C4.33301 13.6452 4.84942 12.7288 5.90189 12.0244C7.05338 11.2608 8.58903 10.8645 10.1476 10.8645C11.7067 10.8645 13.2378 11.2611 14.3803 12.0241L14.3807 12.0243C15.4274 12.7221 15.9497 13.631 15.9497 14.5666C15.9497 15.5048 15.433 16.4214 14.3801 17.1259C13.2285 17.8935 11.6972 18.2916 10.1413 18.2916C8.58436 18.2916 7.04543 17.8929 5.90331 17.1264ZM6.03899 12.2422C5.15087 12.8343 4.58301 13.6546 4.58301 14.5916C4.58301 15.5229 5.16212 16.3424 6.03895 16.9243C7.17766 17.6875 8.67451 18.052 10.1413 18.052C11.6083 18.052 13.1054 17.6875 14.2441 16.924C15.132 16.3319 15.6997 15.5118 15.6997 14.5749C15.6997 13.6434 15.1203 12.8237 14.2432 12.2419C13.1046 11.483 11.6079 11.1208 10.1413 11.1208C8.67458 11.1208 7.17768 11.4831 6.03899 12.2422Z" fill="#292D32" stroke="#989FAB"/>
+                              </svg>
+                              
+                            </i>
+                            <span class="text">Audience</span>
+                            <i class="arrow">
+                              
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#CBD5E0"/>
+                              </svg>
+            
+                            </i>
+                          </a>
+                          <ul class="sub-menu">
+                            <li>
+                              <a href="#">
+                                <span class="text">Users</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <span class="text">Subcribers</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="active">
+                          <a href="#">
+                            <i class="icon">
+                              
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.5001 18.4584H7.50008C5.29498 18.4584 3.84042 17.9854 2.92759 17.0726C2.01476 16.1597 1.54175 14.7052 1.54175 12.5001V7.50008C1.54175 5.29498 2.01476 3.84042 2.92759 2.92759C3.84042 2.01476 5.29498 1.54175 7.50008 1.54175H11.6667C11.6969 1.54175 11.7282 1.55403 11.7538 1.57968C11.7795 1.60532 11.7917 1.6366 11.7917 1.66675C11.7917 1.6969 11.7795 1.72818 11.7538 1.75382C11.7282 1.77946 11.6969 1.79175 11.6667 1.79175H7.50008C5.54397 1.79175 4.06899 2.13449 3.10174 3.10174C2.13449 4.06899 1.79175 5.54397 1.79175 7.50008V12.5001C1.79175 14.4562 2.13449 15.9312 3.10174 16.8984C4.06899 17.8657 5.54397 18.2084 7.50008 18.2084H12.5001C14.4562 18.2084 15.9312 17.8657 16.8984 16.8984C17.8657 15.9312 18.2084 14.4562 18.2084 12.5001V8.33342C18.2084 8.30327 18.2207 8.27199 18.2463 8.24634C18.272 8.2207 18.3033 8.20842 18.3334 8.20842C18.3636 8.20842 18.3948 8.2207 18.4205 8.24634C18.4461 8.27199 18.4584 8.30327 18.4584 8.33342V12.5001C18.4584 14.7052 17.9854 16.1597 17.0726 17.0726C16.1597 17.9854 14.7052 18.4584 12.5001 18.4584Z" fill="#292D32" stroke="#989FAB"/>
+                              <path d="M11.6078 1.55711L11.6149 1.55432L11.6219 1.55131C11.6558 1.5368 11.7104 1.53847 11.7601 1.584L18.4214 8.24529C18.4559 8.27981 18.4659 8.33796 18.4487 8.37811C18.4259 8.43132 18.3793 8.45841 18.3333 8.45841H15C13.6209 8.45841 12.7978 8.18669 12.3056 7.69444C11.8133 7.20218 11.5416 6.37917 11.5416 5.00007V1.66674C11.5416 1.64137 11.5494 1.61601 11.5631 1.59522C11.5765 1.57493 11.5927 1.56305 11.6078 1.55711ZM12.6452 2.82152L11.7916 1.96797V3.17507V5.00007C11.7916 6.07541 11.9199 6.94794 12.486 7.51404C13.0521 8.08014 13.9246 8.20841 15 8.20841H16.825H18.0321L17.1785 7.35485L12.6452 2.82152Z" fill="#292D32" stroke="#989FAB"/>
+                              <path d="M10.8333 10.9583H5.83325C5.8031 10.9583 5.77182 10.946 5.74618 10.9203C5.72054 10.8947 5.70825 10.8634 5.70825 10.8333C5.70825 10.8031 5.72054 10.7718 5.74618 10.7462C5.77182 10.7205 5.8031 10.7083 5.83325 10.7083H10.8333C10.8634 10.7083 10.8947 10.7205 10.9203 10.7462C10.946 10.7718 10.9583 10.8031 10.9583 10.8333C10.9583 10.8634 10.946 10.8947 10.9203 10.9203C10.8947 10.946 10.8634 10.9583 10.8333 10.9583Z" fill="#292D32" stroke="#989FAB"/>
+                              <path d="M9.16659 14.2917H5.83325C5.8031 14.2917 5.77182 14.2795 5.74618 14.2538C5.72054 14.2282 5.70825 14.1969 5.70825 14.1667C5.70825 14.1366 5.72054 14.1053 5.74618 14.0797C5.77182 14.054 5.8031 14.0417 5.83325 14.0417H9.16659C9.19673 14.0417 9.22801 14.054 9.25366 14.0797C9.2793 14.1053 9.29159 14.1366 9.29159 14.1667C9.29159 14.1969 9.2793 14.2282 9.25366 14.2538C9.22801 14.2795 9.19673 14.2917 9.16659 14.2917Z" fill="#292D32" stroke="#989FAB"/>
+                              </svg>
+            
+                            </i>
+                            <span class="text">Posts</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="#">
+                            <i class="icon">
+                              
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.66675 1.66675V4.16675" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.3334 1.66675V4.16675" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.91675 7.57495H17.0834" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17.5 7.08341V14.1667C17.5 16.6667 16.25 18.3334 13.3333 18.3334H6.66667C3.75 18.3334 2.5 16.6667 2.5 14.1667V7.08341C2.5 4.58341 3.75 2.91675 6.66667 2.91675H13.3333C16.25 2.91675 17.5 4.58341 17.5 7.08341Z" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.079 11.4167H13.0864" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.079 13.9167H13.0864" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.9962 11.4167H10.0037" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.9962 13.9167H10.0037" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.91185 11.4167H6.91933" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.91185 13.9167H6.91933" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+            
+                            </i>
+                            <span class="text">Schedules</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="icon ">
+          
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.66675 4.29175C6.6366 4.29175 6.60532 4.27946 6.57968 4.25382C6.55403 4.22818 6.54175 4.1969 6.54175 4.16675V1.66675C6.54175 1.6366 6.55403 1.60532 6.57968 1.57968C6.60532 1.55403 6.6366 1.54175 6.66675 1.54175C6.6969 1.54175 6.72818 1.55403 6.75382 1.57968C6.77946 1.60532 6.79175 1.6366 6.79175 1.66675V4.16675C6.79175 4.1969 6.77946 4.22818 6.75382 4.25382C6.72818 4.27946 6.6969 4.29175 6.66675 4.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                              <path d="M13.3334 4.29175C13.3032 4.29175 13.2719 4.27946 13.2463 4.25382C13.2207 4.22818 13.2084 4.1969 13.2084 4.16675V1.66675C13.2084 1.6366 13.2207 1.60532 13.2463 1.57968C13.2719 1.55403 13.3032 1.54175 13.3334 1.54175C13.3635 1.54175 13.3948 1.55403 13.4204 1.57968C13.4461 1.60532 13.4584 1.6366 13.4584 1.66675V4.16675C13.4584 4.1969 13.4461 4.22818 13.4204 4.25382C13.3948 4.27946 13.3635 4.29175 13.3334 4.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                              <path d="M13.3333 18.4584H6.66667C5.24074 18.4584 4.18404 18.0499 3.48376 17.3497C2.78348 16.6494 2.375 15.5927 2.375 14.1667V7.08342C2.375 5.65749 2.78348 4.60079 3.48376 3.90051C4.18404 3.20023 5.24074 2.79175 6.66667 2.79175H13.3333C14.7593 2.79175 15.816 3.20023 16.5162 3.90051C17.2165 4.60079 17.625 5.65749 17.625 7.08342V14.1667C17.625 15.5927 17.2165 16.6494 16.5162 17.3497C15.816 18.0499 14.7593 18.4584 13.3333 18.4584ZM6.66667 3.04175C5.40151 3.04175 4.36464 3.34917 3.64853 4.06528C2.93242 4.78139 2.625 5.81826 2.625 7.08342V14.1667C2.625 15.4319 2.93242 16.4688 3.64853 17.1849C4.36464 17.901 5.40151 18.2084 6.66667 18.2084H13.3333C14.5985 18.2084 15.6354 17.901 16.3515 17.1849C17.0676 16.4688 17.375 15.4319 17.375 14.1667V7.08342C17.375 5.81826 17.0676 4.78139 16.3515 4.06528C15.6354 3.34917 14.5985 3.04175 13.3333 3.04175H6.66667Z" fill="#989FAB" stroke="#989FAB"/>
+                              <path d="M13.3334 9.29175H6.66675C6.6366 9.29175 6.60532 9.27946 6.57968 9.25382C6.55403 9.22818 6.54175 9.1969 6.54175 9.16675C6.54175 9.1366 6.55403 9.10532 6.57968 9.07968C6.60532 9.05403 6.6366 9.04175 6.66675 9.04175H13.3334C13.3636 9.04175 13.3948 9.05403 13.4205 9.07968C13.4461 9.10532 13.4584 9.1366 13.4584 9.16675C13.4584 9.1969 13.4461 9.22818 13.4205 9.25382C13.3948 9.27946 13.3636 9.29175 13.3334 9.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                              <path d="M10.0001 13.9583H6.66675C6.32508 13.9583 6.04175 13.6749 6.04175 13.3333C6.04175 12.9916 6.32508 12.7083 6.66675 12.7083H10.0001C10.3417 12.7083 10.6251 12.9916 10.6251 13.3333C10.6251 13.6749 10.3417 13.9583 10.0001 13.9583Z" fill="#989FAB"/>
+                              </svg>
+          
+                            </i>
+                            <span class="text">Income</span>
+                            <i class="arrow">
+                              
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#CBD5E0"/>
+                            </svg>
+            
+                            </i>
+                          </a>
+                          <ul class="sub-menu">
+                            <li>
+                              <a href="#">
+                                <span class="text">Earnings</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <span class="text">Funds</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <span class="text">Declines</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <span class="text">Payouts</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="menu">
+                      <p class="title">Settings</p>
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <i class="icon ph-bold ph-gear"></i>
+                            <span class="text">Settings</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="menu">
+                    <p class="title">Account</p>
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="icon ph-bold ph-info"></i>
+                          <span class="text">Help</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon ph-bold ph-sign-out"></i>
+                          <span class="text">Logout</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+     <!-- Widgets panel -->
+     <section class="widgets-panel open">
+      <div class="widgets-panel__calendar">
+        <div id="taghvim">
+          <h2>19</h2>
+          <h4>Tuesday</h4>
+        </div>
+        <ul style="padding-left: 0;">
+          <li class="blue">
+            <span>Listen podcast</span>
+            <span>2:30 - 3:00 PM</span>
+          </li>
+          <li class="purple">
+            <span>English class</span>
+            <span>4:00 - 4:45 PM</span>
+          </li>
+          <li class="green">
+            <span>Stand-up meeting</span>
+            <span>6:15 - 5:30 PM</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- Widgets panel -->
+
+    <div class="spotlight_serach">
+      <svg width="24" height="24">
+        <path
+          d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
+        />
+      </svg>
+      <input type="search" placeholder="Spotlight Search" />
+    </div>
+
+    
+    <script>
+        // Get the apps as an array of objects with image and name
+    const apps = [
+    {id: 'MnuHRS2001', name: 'App store', keywords: 'Appstore,Store', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    {id: 'MnuHRS2002', name: 'Calculator', keywords: 'Calculator', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 1},
+    {id: 'MnuHRS2003', name: 'Calendar', keywords: 'Calendar', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 3},
+    {id: 'MnuHRS2004', name: 'Contacts', keywords: 'Contacts', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 4},
+    {id: 'MnuHRS2005', name: 'Dictionary', keywords: 'Dictionary', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    {id: 'MnuHRS2006', name: 'Home', keywords: 'Home,Files,Finder', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS2007', name: 'Mail', keywords: 'Mail,Email', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS2008', name: 'Messages', keywords: 'Messages,Messenger', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS2009', name: 'Netnewswire', keywords: 'Netnewswire,News', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20010', name: 'Numbers', keywords: 'Numbers,Chart', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    {id: 'MnuHRS20011', name: 'Pages', keywords: 'Pages,Note,Notepad', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20012', name: 'Siri', keywords: 'Siri, Assistant', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    {id: 'MnuHRS20013', name: 'Podcasts', keywords: 'Podcasts', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20014', name: 'Safari', keywords: 'Safari browser,Web browser', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20015', name: 'Monitor Activity', keywords: 'activity, monitor', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20016', name: 'Zoom', keywords: 'zoom,video,call', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    {id: 'MnuHRS20017', name: 'App store', keywords: 'Appstore,Store', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20018', name: 'Calculator', keywords: 'Calculator', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20019', name: 'Calendar', keywords: 'Calendar', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+    {id: 'MnuHRS20020', name: 'Contacts', keywords: 'Contacts', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    ];
+
+
+    let appsDock = [
+      {id: 'MnuHRS20020', name: 'App store', keywords: 'Appstore,Store', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+      {id: 'MnuHRS20021', name: 'Calculator', keywords: 'Calculator', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 1},
+      {id: 'MnuHRS20022', name: 'Calendar', keywords: 'Calendar', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 3},
+      {id: 'MnuHRS20023', name: 'Contacts', keywords: 'Contacts', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 4},
+      {id: 'MnuHRS20024', name: 'Dictionary', keywords: 'Dictionary', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+      {id: 'MnuHRS20025', name: 'Home', keywords: 'Home,Files,Finder', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+      {id: 'MnuHRS20026', name: 'Mail', keywords: 'Mail,Email', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+      {id: 'MnuHRS20027', name: 'Messages', keywords: 'Messages,Messenger', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+      {id: 'MnuHRS20028', name: 'Netnewswire', keywords: 'Netnewswire,News', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 7},
+      {id: 'MnuHRS20029', name: 'Numbers', keywords: 'Numbers,Chart', img: 'M327.68 919.040v-245.76c-0.080-7.36 3.76-14.24 10.16-18 6.4-3.68 14.24-3.68 20.64 0 6.4 3.76 10.24 10.64 10.16 18v204.8h368.64v-202.88h202.88v-575.36h-264.32c-7.36 0.080-14.24-3.76-18-10.16-3.68-6.4-3.68-14.24 0-20.64 3.76-6.4 10.64-10.24 18-10.16h305.28v645.12l-5.76 6.4-202.88 202.88-6.4 5.76zM778.24 848.64l132.48-132.48h-132.48zM345.6 632.32c-72.24-1.36-119.040-33.68-138.24-79.36-18.080-42.96-13.68-93.28-1.92-142.72-5.92-8.16-12.88-20.32-12.16-39.68 0.88-23.28 9.6-40.48 18.56-51.2 5.68-6.8 8.24-7.76 12.16-10.24 4.56-17.44 11.36-34.56 20.48-46.72 7.44-9.92 14.56-14.56 21.76-20.48 0.32-17.84 1.2-32.4 0-49.92-4.16-9.52-14.24-18.48-33.28-27.52-19.84-9.36-46.64-17.84-73.6-28.8s-54.24-24.56-76.8-46.080c-22.56-21.52-39.28-51.76-41.6-90.88-0.32-5.68 1.68-11.2 5.52-15.28 3.92-4.16 9.28-6.48 14.96-6.48h573.44c5.68 0 11.040 2.32 14.96 6.48 3.84 4.080 5.84 9.6 5.52 15.28-2.32 39.12-19.040 69.36-41.6 90.88s-49.84 35.12-76.8 46.080c-26.96 10.96-53.76 19.44-73.6 28.8-19.040 9.040-29.12 17.92-33.28 27.52-1.2 17.52-0.32 32.080 0 49.92 7.92 6.24 16.16 11.84 23.040 21.76 8.32 12 13.76 28.24 17.92 44.8 7.28 4.88 30.72 22.96 30.72 58.24 0 17.84-4.32 30.48-10.88 41.6 7.44 24.88 16.080 62.56 12.16 101.12-2.16 21.36-8.080 43.44-22.4 60.8-12.64 15.28-33.28 24-56.96 26.24-16.48 20.56-42.64 35.84-77.44 35.84-0.24 0-0.4 0-0.64 0zM346.24 591.36c26.88 0 45.12-14.16 50.56-23.68 3.68-6.4 10.56-10.32 17.92-10.24 18.56 0 27.040-5.12 33.92-13.44s11.76-22 13.44-38.4c3.36-32.88-6-74.8-12.16-93.44-2.48-7.44-0.48-15.68 5.12-21.12-1.92 1.92 5.76-9.44 5.76-24.32s-16.64-27.52-16.64-27.52c-5.12-3.040-8.56-8.24-9.6-14.080-2-13.84-8.16-27.92-15.36-38.4s-16.64-17.68-18.56-18.56c-7.12-3.44-11.6-10.64-11.52-18.56 0-18.24-1.76-34.4-0.64-55.68-2.64-1.36-5.040-2.4-8.32-3.84-10.72-4.56-24.48-8.32-32-8.32s-21.52 4.32-32.64 8.96c-4.48 1.84-4.48 2.32-7.68 3.84 1.040 20.96-0.64 36.96-0.64 55.040 0.16 7.76-4 14.96-10.88 18.56 0.96-0.48-10.96 8.16-19.2 19.2s-14.96 24.72-16.64 37.12c-0.88 6.96-5.2 12.96-11.52 16 0 0-1.84 0.48-5.76 5.12s-8.4 12.56-8.96 26.88c-0.4 9.92 7.040 18.56 7.040 18.56 5.12 5.2 7.12 12.8 5.12 19.84-12.4 47.68-14.64 94.88-1.28 126.72s39.44 52.64 101.12 53.76zM403.84 156.8c11.28-12.88 26.48-22 42.24-29.44 23.6-11.2 50.48-19.28 75.52-29.44s47.68-22.16 64-37.76c11.52-11.040 18.96-25.36 23.68-42.24h-221.44c-6.4 50.72-33.28 92.8-33.28 92.8l16.64 33.28c9.28 2.4 17.52 5.76 24.96 8.96 4.48 1.92 4.24 2.24 7.68 3.84zM291.84 156.16c2.72-1.28 4.56-2.56 7.68-3.84 7.040-2.96 15.040-5.44 23.68-7.68l17.28-33.92c0 0-27.52-42.48-33.92-92.8h-219.52c4.72 16.88 12.16 31.2 23.68 42.24 16.32 15.6 38.96 27.6 64 37.76s51.92 18.24 75.52 29.44c15.44 7.36 30.4 16.32 41.6 28.8z' , Level: 0},
+    ];
+
+    const itemsPerPage = 16;
+    const firtHrElement = 1;
+    let secondHrElement = 6;
+    let currentPage = 1;
+    let filteredApps = apps;
+    let totalPages = 0;
+    let currentSelectedMenu = null;
+
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+
+  
+     // Right click to desktop
+     document.onclick = hideMenu;
+   
+   
+    function hideMenu() {
+      hideMenuLaunchPad();
+      hideMenuDock();
+    }
+
+     
+    function hideMenuLaunchPad() {
+      var menu = document.getElementById("contextMenu");
+      menu.style.zIndex = "-1";
+      menu.style.opacity = "0";
+    }
+
+    function hideMenuDock() {
+      var menu = document.getElementById("contextMenuDock");
+      menu.style.zIndex = "-1";
+      menu.style.opacity = "0";
+    }
+
+    // Right click to app desktop
+    function rightClick(e, appId) {
+      e.preventDefault();
+
+      if (document.getElementById("contextMenu").style.opacity == "1") 
+      {
+        hideMenu();
+      }
+      else {
+        var menu = document.getElementById("contextMenu");
+        menu.style.zIndex = "99";
+        menu.style.opacity = "1";
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px";
+        currentSelectedMenu = appId;
+      }
+    }
+
+    function rightClickDock(e,appId) {
+      e.preventDefault();
+      if (document.getElementById("contextMenuDock").style.opacity == "1") 
+      {
+        hideMenu();
+      }
+      else {
+        var menu = document.getElementById("contextMenuDock");
+        menu.style.zIndex = "99";
+        menu.style.opacity = "1";
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px";
+        currentSelectedMenu = appId;
+      }
+      
+    }
+
+    function findAppLaunchPad(id){
+      return apps.find(app => app.id === id);
+    }
+
+    function findAppDock(id){
+      return appsDock.find(app => app.id === id);
+    }
+   
+    function findAppById(id) {
+      let app = findAppLaunchPad(id);
+      if (app === undefined){
+        app = findAppDock(id);
+      }
+        return app;
+    }
+
+    function handleUnpinToTaskbarClick(){
+      const indexAppDock = appsDock.findIndex(app => app.id === currentSelectedMenu);
+      appsDock = appsDock.filter(app => app.id !== currentSelectedMenu);
+      removeButtonAtIndex(indexAppDock);
+      secondHrElement--;
+
+      //Update style
+     
+      const existingStyle = document.querySelector('#dockStyles'); // Look for the existing style tag with a specific id
+
+      if (existingStyle) {
+          // Remove old style if it exists
+          existingStyle.remove();
+      }
+
+      const style = document.createElement('style');
+      style.id = 'dockStyles'; 
+      let styleDock = '';
+     
+      let appIndex = 0;
+      appsDock.forEach(app =>{
+        const topOffset = Math.min(-50 - (app.name.length * 2), -50);
+        if(appIndex  === firtHrElement || appIndex === secondHrElement){
+            styleDock += `
+             .dock .icon:nth-child(${appIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+            appIndex++;
+          }
+          styleDock += `
+            .dock .icon:nth-child(${appIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+          
+          appIndex ++;
+      });
+      style.innerHTML = styleDock;
+      document.head.append(style);
+
+
+    }
+
+
+    function removeButtonAtIndex(index) {
+        const container = document.querySelector('.dock');
+        const buttons = container.getElementsByTagName('button');
+        
+        if (index >= 0 && index < buttons.length) {
+          container.removeChild(buttons[index]);
+        } else {
+          console.log("Invalid index");
+        }
+    }
+
+
+    function handlePinToTaskbarClick() {
+      // appsDock.push(findAppById(currentSelectedMenu));
+      const appToAdd = findAppById(currentSelectedMenu);
+      const appsDockContainer = document.querySelector('.dock');
+
+    if (appToAdd) {
+        // Check if appToAdd already exists in appsDock
+        // const exists = appsDock.some(app => app.id === appToAdd.id);
+        const existsInDock = appsDock.slice(firtHrElement, secondHrElement).some(app => app.id === appToAdd.id);
+
+
+        if (!existsInDock) {
+            // appsDock.push(appToAdd);
+            if(findAppDock(currentSelectedMenu)){
+              const indexAppDock = appsDock.findIndex(app => app.id === currentSelectedMenu);
+              appsDock = appsDock.filter(app => app.id !== currentSelectedMenu);
+              removeButtonAtIndex(indexAppDock);
+            }
+            insertAppAtIndex(findSecondHrIndex(appsDockContainer) - 1, appToAdd);
+           
+        } else {
+           return;
+        }
+    } else {
+       return;
+    }
+
+
+    const appButton = document.createElement('button');
+      appButton.classList.add('icon',`${appToAdd.id}`);
+      appButton.innerHTML  = `
+        <svg width="40" height="40" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >
+            <path d="${appToAdd.img}" transform="rotate(-180, 512, 512)" />
+        </svg>
+      `;
+
+      // Add event listener for right-click (contextmenu event)
+      appButton.addEventListener('contextmenu', function(event) {
+        rightClickDock(event,appToAdd.id);
+          });
+
+      // Find the second <hr> element
+      const allHrElements = appsDockContainer.querySelectorAll('hr');
+      const secondHr = allHrElements[1]; //insert before the second <hr>
+  
+      // appsDockContainer.appendChild(appButton);
+      appsDockContainer.insertBefore(appButton, secondHr);
+      secondHrElement ++;
+    //Update style
+     
+      const existingStyle = document.querySelector('#dockStyles'); // Look for the existing style tag with a specific id
+
+      if (existingStyle) {
+          // Remove old style if it exists
+          existingStyle.remove();
+      }
+
+      const style = document.createElement('style');
+      style.id = 'dockStyles'; 
+      let styleDock = '';
+     
+      let appIndex = 0;
+      appsDock.forEach(app =>{
+        const topOffset = Math.min(-50 - (app.name.length * 2), -50);
+        if(appIndex  === firtHrElement || appIndex === secondHrElement){
+            styleDock += `
+             .dock .icon:nth-child(${appIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+            appIndex++;
+          }
+          styleDock += `
+            .dock .icon:nth-child(${appIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+          
+          appIndex ++;
+      });
+      console.log(style);
+      style.innerHTML = styleDock;
+      document.head.append(style);
+
+  }
+
+  function insertAppAtIndex(index, appToAdd) {
+      if (index < 0 || index > appsDock.length) {
+          console.error('Index out of bounds');
+          return;
+      }
+
+      // Insert the item at the specified index
+      appsDock.splice(index, 0, appToAdd);
+  }
+
+  function findSecondHrIndex(container) {
+    // Get all <hr> elements within the container
+      const hrElements = container.querySelectorAll('hr');
+
+      // Check if there is a second <hr> element
+      if (hrElements.length >= 2) {
+          // Get the second <hr> element
+          const secondHr = hrElements[1];
+
+          // Convert the container's children into an array
+          const dockChildrenArray = Array.from(container.children);
+
+          // Get the index of the second <hr> element
+          return dockChildrenArray.indexOf(secondHr);
+      } else {
+          // Less than two <hr> elements found
+          return -1;
+      }
+  }
+
+    // Function to render apps based on the current page
+    function renderApps(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const appsContainer = document.querySelector('.Apps-container');
+        appsContainer.innerHTML = '';
+
+        const paginatedApps = filteredApps.slice(start, end);
+        if (totalPages != Math.ceil(filteredApps.length / itemsPerPage)){
+          totalPages = Math.ceil(filteredApps.length / itemsPerPage);
+          currentPage = 1;
+        }
+
+        paginatedApps.forEach(app => {
+            const appDiv = document.createElement('div');
+            appDiv.classList.add('child-launchpad',`${app.id}`);
+            appDiv.setAttribute('data-keywords', app.keywords);
+            appDiv.innerHTML = `
+            <svg width="50" height="50" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >
+            <path d="${app.img}" transform="rotate(-180, 512, 512)" />
+            </svg>
+            <strong>${app.name}</strong>
+            `;
+
+            // Add event listener for right-click (contextmenu event)
+            appDiv.addEventListener('contextmenu', function(event) {
+              rightClick(event, app.id);
+            });
+
+            appsContainer.appendChild(appDiv);
+        });
+        console.log('Render firsttime');
+        prevButton.style.display = currentPage === 1 ? 'none' : 'block';
+        nextButton.style.display = currentPage === totalPages ? 'none' : 'block';
+        // prevButton.disabled = currentPage === 1;
+        // nextButton.disabled = currentPage === totalPages;
+    }
+
+
+    function renderAppsDock(){
+      const appsDockContainer = document.querySelector('.dock');
+
+      const existingStyle = document.querySelector('#dockStyles'); // Look for the existing style tag with a specific id
+
+      if (existingStyle) {
+          // Remove old style if it exists
+          existingStyle.remove();
+      }
+
+      const style = document.createElement('style');
+      style.id = 'dockStyles'; 
+      let styleDock = '';
+      appsDockContainer.innerHTML = '';
+      // appsDockContainer.innerHTML = '';
+      let appIndex = 0;
+      let elementIndex = 0;
+       appsDock.forEach(app =>{
+          const appButton = document.createElement('button');
+          appButton.classList.add('icon',`${app.id}`);
+          if(elementIndex  === 1){
+            appButton.classList.add('open-lunchpad');
+          }
+          if(elementIndex === 0){
+            appButton.classList.add('open-employee');
+          }
+          
+          appButton.innerHTML  = `
+            <svg width="40" height="40" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >
+                <path d="${app.img}" transform="rotate(-180, 512, 512)" />
+            </svg>
+          `;
+
+          if(elementIndex > firtHrElement + 1 && elementIndex < secondHrElement + 1){
+            // Add event listener for right-click (contextmenu event)
+            appButton.addEventListener('contextmenu', function(event) {
+            rightClickDock(event, app.id);
+            });
+          }
+          else if (elementIndex > secondHrElement + 1){
+             // Add event listener for right-click (contextmenu event)
+             appButton.addEventListener('contextmenu', function(event) {
+              rightClick(event,app.id);
+              });
+          }
+
+        
+  
+          const topOffset = Math.min(-50 - (app.name.length * 2), -50);
+          appsDockContainer.appendChild(appButton);
+          if(elementIndex  === firtHrElement || elementIndex === secondHrElement){
+            const hr = document.createElement('hr');
+            hr.classList.add('column','hidden');
+            appsDockContainer.appendChild(hr);
+            styleDock += `
+             .dock .icon:nth-child(${elementIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+          elementIndex++;
+          }
+         
+          styleDock += `
+             .dock .icon:nth-child(${elementIndex + 1}):hover::after {
+              content: "${app.name}";
+               top: ${topOffset}%;
+            }
+          `
+          appIndex++;
+          elementIndex ++;
+       });
+
+       style.innerHTML = styleDock;
+       document.head.append(style);
+       console.log(styleDock);
+
+  
+
+    }
+
+   
+
+
+
+    function renderPagination() {
+        totalPages = Math.ceil(filteredApps.length / itemsPerPage);
+
+       
+        // prevButton.disabled = currentPage === 1;
+        // nextButton.disabled = currentPage === totalPages;
+
+        prevButton.style.display = currentPage === 1 ? 'none' : 'block';
+        nextButton.style.display = currentPage === totalPages ? 'none' : 'block';
+
+        prevButton.addEventListener('click', () => {
+            currentPage = currentPage - 1;
+            renderApps(currentPage);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentPage = currentPage + 1;
+            renderApps(currentPage);
+            
+        });
+    }
+
+
+    // Debounce function to limit the number of search executions
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    // Function to calculate fuzzy match score (Levenshtein distance algorithm)
+    function fuzzyMatch(query, keyword) {
+        const threshold = 3; // Max number of character differences allowed
+        return getLevenshteinDistance(query, keyword) <= threshold;
+    }
+
+    // Helper function: Levenshtein distance algorithm
+    function getLevenshteinDistance(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    // Search function with fuzzy and partial matching
+    function searchApps(query) {
+        if (query === '') {
+            filteredApps = apps;
+            totalPages = Math.ceil(filteredApps.length / itemsPerPage);
+            currentPage = 1;
+        } else {
+            filteredApps = apps.filter(app => {
+                const keywords = app.keywords.toLowerCase().split(',');
+                const name = app.name.toLowerCase();
+                const queryLower = query.toLowerCase();
+                return (
+                    keywords.some(keyword => keyword.includes(queryLower)) || 
+                    name.includes(queryLower) || 
+                    fuzzyMatch(queryLower, name)
+                );
+            });
+
+            if(filteredApps.length === 0){
+                prevButton.style.display = 'none';
+              nextButton.style.display = 'none';
+              return;
+            }
+        }
+        currentPage = 1; // Reset to first page
+        renderApps(currentPage);
+    }
+
+    // Initial render
+    renderApps(currentPage);
+    renderPagination();
+    renderAppsDock();
+
+    // Debounced search
+    const searchInput = document.querySelector('.search-input');
+    searchInput.addEventListener('input', debounce((event) => {
+        searchApps(event.target.value);
+    }, 300));
+
+    </script>
+
+    <script>
+      /********** ELEMENTS **********/
+    const elements = {
+      body: document.querySelector("body"),
+      navbar: document.querySelector(".navbar"),
+      open_spotlight: document.querySelector(".open_Search"),
+      spotlight_search: document.querySelector(".spotlight_serach"),
+      brightness_range: document.getElementById("brightness"),
+      sound_range: document.getElementById("sound"),
+      clockElement: document.getElementById("clock"),
+      clockWrapper: document.querySelector(".clock"),
+      widgetsPanel: document.querySelector(".widgets-panel"),
+      batteryButton: document.querySelector(".battery"),
+      batteryText: document.querySelector(".battery__text"),
+      batteryPopup: document.querySelector(".battery__popup"),
+      batteryPopupText: document.querySelector(".battery__popup header span"),
+      batteryProgress: document.querySelector(".battery__progress"),
+      batteryIsChargingLogo: document.querySelector(".is-charging"),
+      powerSource: document.querySelector(".power-source"),
+    };
+
+
+    // Terminal App
+    const terminalApp = {
+      app_name: document.querySelector("#Terminal"),
+      window: document.querySelector(".employee"),
+      full: document.querySelector(".full"),
+      close: document.querySelector(".close"),
+      backfull: document.querySelector(".backfull"),
+      point: document.querySelector("#point-terminal"),
+      content: document.querySelector(".terminal .terminal_content"),
+      taskbar: document.querySelector(".terminal .window__taskbar"),
+      opening: document.querySelector(".open-employee")
+    };
+
+
+    // App draggable
+    $(function () {
+      $(".employee").draggable();
+    });
+
+
+
+    terminalApp.opening.addEventListener("click", () =>
+      open_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+    );
+    terminalApp.close.addEventListener("click", () =>
+      close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+    );
+
+
+    terminalApp.backfull.addEventListener("click", () =>
+      handleMinimize(terminalApp.window)
+    );
+
+    terminalApp.full.addEventListener("click", () =>
+      handleFullScreen(terminalApp.window)
+    );
+
+    
+
+
+
+    // Launchpad
+    const launchpad = {
+      container: document.querySelector(".container__Window"),
+      window: document.querySelector(".launchpad"),
+      searchbox: document.querySelector(".launchpad .searchbox"),
+      app_container: document.querySelector(".Apps-container"),
+      point: document.querySelector("#point-launchpad"),
+      opening: document.querySelector(".open-lunchpad")
+    };
+
+    /********** LISTENERS **********/
+
+
+    // Spotlight
+    function handleopen_spotlight() {
+      if (elements.spotlight_search.style.display === "none") {
+        elements.spotlight_search.style.display = "flex";
+      } else {
+        elements.spotlight_search.style.display = "none";
+      }
+    }
+
+    function isMinimized(element) {
+    const maxWidth = window.getComputedStyle(element).maxWidth;
+    const minWidth = window.getComputedStyle(element).minWidth;
+   
+    return maxWidth === "80%" && minWidth === "70%";
+  }
+
+    function handleMinimize(Minimize) {
+      Minimize.style.maxWidth = "80%";
+      Minimize.style.minWidth = "70%";
+      Minimize.style.height = "50%";
+      if (isMinimized(Minimize)) {
+      console.log("Element is now minimized.");
+    }
+    }
+
+    function handleFullScreen(maximize) {
+      maximize.style.maxWidth = "100%";
+      maximize.style.minWidth = "100%";
+      maximize.style.height = "100%";
+      if (!isMinimized(maximize)) {
+      console.log("Element is now in fullscreen mode.");
+    } else{
+      
+    }
+    // document.querySelector(".window__taskbar--actions button:nth-child(3)::after").style.content = "−";
+    // maximize.style.content = "−";
+      
+    }
+
+    function close_window(close, point, appName) {
+      close.style.display = "none";
+      close.style.position = "relative";
+      // point.style.display = "none";
+      // appName.style.display = "none";
+    }
+
+    function open_window(open, point, appName) {
+      // elements.navbar.style.display = "flex";
+      open.style.display = "block";
+      open.style.position = "absolute";
+      launchpad.container.style.display = "flex";
+      launchpad.window.style.display = "none";
+      elements.spotlight_search.style.display = "flex";
+      elements.widgetsPanel.style.display = "block";
+      // launchpad.point.style.display = "none";
+      // appName.style.display = "block";
+      // point.style.display = "block";
+    }
+
+    // Launchpad function start
+    launchpad.opening.addEventListener("click", handleOpenLaunching);
+
+    function handleOpenLaunching() {
+      
+      if (launchpad.window.style.display === "none") {
+        elements.spotlight_search.style.display = "none";
+        elements.widgetsPanel.style.display = "none";
+        launchpad.window.style.display = "block";
+        // elements.navbar.style.display = "none";
+        // launchpad.point.style.display = "block";
+      } else {
+        elements.spotlight_search.style.display = "flex";
+        elements.widgetsPanel.style.display = "block";
+        launchpad.window.style.display = "none";
+        // elements.navbar.style.display = "flex";
+        // launchpad.point.style.display = "none";
+      }
+      // launchpad.container.style.display = "none";
+    }
+
+    function handleLaunchpadSearch(e) {
+      for (let app of launchpad.app_container.children) {
+        if (e.target.value) {
+          app.style.display = "none";
+          if (app.dataset.keywords.includes(e.target.value)) {
+            app.style.display = "flex";
+          }
+        } else app.style.display = "flex";
+      }
+    }
+    // Launchpad function end
+
+   
+
+
+    // handleopen_spotlight();
+    handleOpenLaunching();
+
+
+    </script>    
+
+    <!-- Jquery -->
+  
+  <script src="script.js"></script>
+  </body>
+</html>
+
+	

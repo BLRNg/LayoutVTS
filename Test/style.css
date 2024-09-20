@@ -1,0 +1,60 @@
+.nav{
+    position:relative;
+  }
+  .nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .dropdown {
+    display: flex;
+  }
+  .dropdown li{
+    width:200px;
+  }
+  .dropdown >li{border-right:1px solid #fff;}
+  .dropdown  a {
+    width: 180px;
+    display:block;
+    padding:5px 10px;
+    background:cyan;
+    color:#000;
+    text-decoration:none;
+    border-top:1px solid #fff;
+  }
+  .scroll-wrap {
+    height: 0;
+    position: relative;
+    opacity:0;
+  }
+  .dropdown > li:hover .scroll-wrap,
+  .dropdown > li:focus-within .scroll-wrap{
+    opacity:1;
+  } 
+  .dropdown > li:hover > a
+  .dropdown > li:focus-within > a{background:teal} 
+  .dropdown a:hover{
+    background:teal;
+  }
+  .scroll {
+    height: 150px;
+    overflow: auto;
+  }
+  
+  .nav .subSub {
+    position: absolute;
+    left: -999rem;
+    top:0;
+    padding:0 10px;
+    height:200px;
+    overflow:scroll;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .5s ease;
+  }
+  li:hover > .subSub,
+  li:focus-within > .subSub{
+    left:200px;
+    opacity:1;
+    pointer-events:initial;
+  }

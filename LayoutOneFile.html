@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONS -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- STYLESHEET -->
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+        /* Reset CSS */
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        :root{
+            --primary: #0B9F57;
+            --primary-hover: #E7F7EF;
+        }
+
+        body{
+            background-color: #5b6677;
+        }
+
+        .container{
+            width: 100%;
+            height: 100vh;
+        }
+
+        .pool-ball {
+            width: 24px;  /* Size of the circle */
+            height: 24px;  /* Size of the circle */
+            background-color: #E03137;  /* Red background */
+            border-radius: 50%;  /* Make it circular */
+            display: flex;  /* Flexbox to center the content */
+            align-items: center;  /* Center vertically */
+            justify-content: center;  /* Center horizontally */
+            position: relative;  /* For absolute positioning of the number */
+            transition: all 0.3s;
+        }
+
+
+        .number {
+            color: #ffffff;  /* White color for the number */
+            font-size: 17px;  /* Size of the number */
+            font-weight: bold;  /* Make the number bold */
+            font-family: 'Arial', sans-serif;  /* Font family */
+        
+        }
+
+        /* Header area */
+        header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-left{
+            display: flex;
+            padding-left: 5px ;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            margin-left: 30px;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #757575;
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+
+        .menu-button:hover{
+            background-color: #dbdbdb;
+            color: #000;
+        }
+
+        .menu-button{
+            transition: all 0.3s;
+        }
+
+        .search-container {
+            position: relative;
+            flex-grow: 1;
+            margin-left: 40px;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .search-input {
+            width: 320px;
+            height: 48px;
+            padding: 10px 20px 10px 40px;
+            border: none;
+            border-radius: 8px;
+            background-color: #FAFAFA;
+            font-size: 14px;
+            color: #21252B;
+            outline: none;
+            box-shadow: 0 1px 1px var(--box-shadow);
+        }
+
+        .search-input::placeholder {
+            color: #B8BDC5;
+        }
+
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            /* align-items: center; */
+        }
+
+        .user-info .notifications svg{
+            margin-top: 10px;
+        }
+
+        .user-info .notifications {
+            margin-right: 15px;
+            position: relative;
+        }
+
+        .user-info .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info .profile img {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            margin-right: 5px;
+        }
+
+        .user-info .notifications .pool-ball {
+            top: -27px;
+            right: -15px;
+            width: 5px; 
+            height: 5px; 
+        }
+
+        .user-info .notifications .pool-ball::after {
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        border: 1px solid #FFF;
+        }
+
+
+        /* Sidebar area */
+        ul{
+            padding: 0;
+        }
+
+        .sidebar{
+            position: fixed;
+            top: 68px;
+            left: 0;
+            width: 256px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #FFF;
+            padding: 24px;
+            /* border-radius: 30px; */
+            transition: all 0.3s;
+        }
+
+
+        .menu .title{
+            font-size: 10px;
+            font-weight: 600;
+            color: #21252B;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .nav{
+            flex: 1;
+        }
+
+        .menu ul li{
+            position: relative;
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .menu ul li a{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #21252B;
+            text-decoration: none;
+            padding: 12px 8px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu ul li > a {
+            position: relative; 
+        }
+
+        .menu ul li > a:hover::before,
+        .menu ul li.active > a::before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 21px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .menu ul li > a:hover,
+        .menu ul li.active > a {
+            color: var(--primary);
+            background-color: var(--primary-hover);
+        }
+
+        .menu ul li .icon{
+            font-size: 20px;
+        }
+
+        .menu ul li .text{
+            flex: 1;
+        }
+
+        .menu ul li .arrow{
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .menu ul li.active .arrow{
+            transform: rotate(180deg);
+        }
+
+        .menu .sub-menu{
+            display: none;
+            margin-left: 20px;
+            padding-left: 20px;
+            padding-top: 5px;
+            border-left: 1px solid #f6f6f6;
+        }
+
+        .menu .sub-menu li a{
+            padding: 10px 8px;
+            font-size: 12px;
+        }
+
+        .menu:not(:last-child){
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f6f6f6;
+        }
+
+        .sidebar.active{
+            width: 92px;
+        }
+
+        .sidebar.active .menu .title{
+            text-align: center;
+        }
+
+        .sidebar.active .menu ul li .arrow{
+            display: none;
+        }
+
+        .sidebar.active .menu > ul > li > a{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar.active .menu > ul > li > a .text{
+            position: absolute;
+            left: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #000;
+            opacity: 0;
+            visibility: hidden;
+            /* transition: all 0.3s; */
+        }
+
+        .sidebar.active .menu > ul > li > a .text::after{
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 20%;
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            background-color: #000;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .sidebar.active .menu > ul > li > a:hover .text{
+            left: 50px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar.active .menu .sub-menu{
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 200px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            border: 1px solid #f6f6f6;
+            background-color: #fff;
+            box-shadow: 0px 10px 8px rgba(0,0,0,0.1);
+        }
+
+
+        .sidebar.active .menu ul li .pool-ball{
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red; /* Adjust color as needed */
+            color: white; /* Adjust text color as needed */
+            border-radius: 50%;
+            width: 24px; /* Adjust size as needed */
+            height: 24px; /* Adjust size as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px; /* Adjust text size as needed */
+            font-weight: bold;
+        }
+
+
+
+
+
+
+    </style>
+
+    <title>Sidebar</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-left">
+            <button class="menu-button">&#9776;</button>
+            <img src="https://phanmemtinhluong.com/wp-content/uploads/2023/11/cropped-ParadiseHRCopyRight.png" alt="Logo" class="logo">
+            <div class="search-container">
+              <i class="search-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80541 2.93994C6.01372 2.93994 2.93994 6.01372 2.93994 9.80541C2.93994 13.5971 6.01372 16.6709 9.80541 16.6709C13.5971 16.6709 16.6709 13.5971 16.6709 9.80541C16.6709 6.01372 13.5971 2.93994 9.80541 2.93994ZM1.68994 9.80541C1.68994 5.32336 5.32336 1.68994 9.80541 1.68994C14.2875 1.68994 17.9209 5.32336 17.9209 9.80541C17.9209 14.2875 14.2875 17.9209 9.80541 17.9209C5.32336 17.9209 1.68994 14.2875 1.68994 9.80541Z" fill="#21252B"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5727 14.9628C14.8164 14.7184 15.2121 14.7179 15.4565 14.9617L18.3932 17.8907C18.6376 18.1345 18.6381 18.5302 18.3944 18.7746C18.1506 19.019 17.7549 19.0195 17.5105 18.7758L14.5738 15.8467C14.3294 15.6029 14.3289 15.2072 14.5727 14.9628Z" fill="#21252B"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80541 2.93994C6.01372 2.93994 2.93994 6.01372 2.93994 9.80541C2.93994 13.5971 6.01372 16.6709 9.80541 16.6709C13.5971 16.6709 16.6709 13.5971 16.6709 9.80541C16.6709 6.01372 13.5971 2.93994 9.80541 2.93994ZM1.68994 9.80541C1.68994 5.32336 5.32336 1.68994 9.80541 1.68994C14.2875 1.68994 17.9209 5.32336 17.9209 9.80541C17.9209 14.2875 14.2875 17.9209 9.80541 17.9209C5.32336 17.9209 1.68994 14.2875 1.68994 9.80541Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5727 14.9628C14.8164 14.7184 15.2121 14.7179 15.4565 14.9617L18.3932 17.8907C18.6376 18.1345 18.6381 18.5302 18.3944 18.7746C18.1506 19.019 17.7549 19.0195 17.5105 18.7758L14.5738 15.8467C14.3294 15.6029 14.3289 15.2072 14.5727 14.9628Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>      
+              </i>
+              <input type="text" class="search-input" placeholder="Tìm kiếm">
+          </div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+              <div class="notifications">
+                  <i>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.02 20.5299C9.68999 20.5299 7.35999 20.1599 5.14999 19.4199C4.30999 19.1299 3.66999 18.5399 3.38999 17.7699C3.09999 16.9999 3.19999 16.1499 3.65999 15.3899L4.80999 13.4799C5.04999 13.0799 5.26999 12.2799 5.26999 11.8099V8.91992C5.26999 5.19992 8.29999 2.16992 12.02 2.16992C15.74 2.16992 18.77 5.19992 18.77 8.91992V11.8099C18.77 12.2699 18.99 13.0799 19.23 13.4899L20.37 15.3899C20.8 16.1099 20.88 16.9799 20.59 17.7699C20.3 18.5599 19.67 19.1599 18.88 19.4199C16.68 20.1599 14.35 20.5299 12.02 20.5299ZM12.02 3.66992C9.12999 3.66992 6.76999 6.01992 6.76999 8.91992V11.8099C6.76999 12.5399 6.46999 13.6199 6.09999 14.2499L4.94999 16.1599C4.72999 16.5299 4.66999 16.9199 4.79999 17.2499C4.91999 17.5899 5.21999 17.8499 5.62999 17.9899C9.80999 19.3899 14.24 19.3899 18.42 17.9899C18.78 17.8699 19.06 17.5999 19.19 17.2399C19.32 16.8799 19.29 16.4899 19.09 16.1599L17.94 14.2499C17.56 13.5999 17.27 12.5299 17.27 11.7999V8.91992C17.27 6.01992 14.92 3.66992 12.02 3.66992Z" fill="#21252B"/>
+                      <path d="M13.88 3.93993C13.81 3.93993 13.74 3.92993 13.67 3.90993C13.38 3.82993 13.1 3.76993 12.83 3.72993C11.98 3.61993 11.16 3.67993 10.39 3.90993C10.11 3.99993 9.80999 3.90993 9.61999 3.69993C9.42999 3.48993 9.36999 3.18993 9.47999 2.91993C9.88999 1.86993 10.89 1.17993 12.03 1.17993C13.17 1.17993 14.17 1.85993 14.58 2.91993C14.68 3.18993 14.63 3.48993 14.44 3.69993C14.29 3.85993 14.08 3.93993 13.88 3.93993Z" fill="#21252B"/>
+                      <path d="M12.02 22.8101C11.03 22.8101 10.07 22.4101 9.37002 21.7101C8.67002 21.0101 8.27002 20.0501 8.27002 19.0601H9.77002C9.77002 19.6501 10.01 20.2301 10.43 20.6501C10.85 21.0701 11.43 21.3101 12.02 21.3101C13.26 21.3101 14.27 20.3001 14.27 19.0601H15.77C15.77 21.1301 14.09 22.8101 12.02 22.8101Z" fill="#21252B"/>
+                      </svg>                    
+                  </i>
+                  <p class="pool-ball">
+                      <span class="number"></span>
+                  </p>
+              </div>
+              <div class="profile">
+                  <img src="https://via.placeholder.com/32" alt="User Profile">
+                  <i>
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.08754 0.837602C1.31535 0.609797 1.68469 0.609797 1.9125 0.837602L5.00002 3.92512L8.08754 0.837602C8.31535 0.609797 8.68469 0.609797 8.9125 0.837602C9.14031 1.06541 9.14031 1.43475 8.9125 1.66256L5.4125 5.16256C5.18469 5.39037 4.81535 5.39037 4.58754 5.16256L1.08754 1.66256C0.859736 1.43475 0.859736 1.06541 1.08754 0.837602Z" fill="#21252B"/>
+                    </svg>
+                </i>
+              </div>
+            </div>
+        </div>
+    </header>
+      <div class="sidebar active">
+       
+        <div class="nav">
+          <div class="menu">
+            <p class="title">Main</p>
+            <ul>
+              <li>
+                <a href="#">
+                  <i class="icon ph-bold"> 
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.4781 8.24176V8.24175H16.475H13.1083C12.4831 8.24175 12.1731 8.12719 12.0137 7.98607C11.8699 7.85888 11.75 7.6201 11.75 7.09175V3.31675C11.75 2.7936 11.8695 2.55367 12.0144 2.4249C12.1744 2.28273 12.4849 2.16675 13.1083 2.16675H16.475C17.0985 2.16675 17.4089 2.28273 17.5689 2.4249C17.7139 2.55367 17.8333 2.7936 17.8333 3.31675V7.10008C17.8333 7.6236 17.7137 7.86276 17.5697 7.99024C17.4107 8.13089 17.1013 8.24568 16.4781 8.24176Z" fill="#989FAB" stroke="#989FAB"/>
+                  <path d="M17.8333 13.1083V16.475C17.8333 17.0874 17.7071 17.3879 17.5475 17.5475C17.3879 17.7071 17.0874 17.8333 16.475 17.8333H13.1083C12.4959 17.8333 12.1955 17.7071 12.0358 17.5475C11.8762 17.3879 11.75 17.0874 11.75 16.475V13.1083C11.75 12.4959 11.8762 12.1955 12.0358 12.0358C12.1955 11.8762 12.4959 11.75 13.1083 11.75H16.475C17.0874 11.75 17.3879 11.8762 17.5475 12.0358C17.7071 12.1955 17.8333 12.4959 17.8333 13.1083Z" fill="#989FAB" stroke="#989FAB"/>
+                  <path d="M6.89489 8.24176V8.24175H6.89175H3.52508C2.89983 8.24175 2.58986 8.12719 2.43041 7.98607C2.28669 7.85888 2.16675 7.6201 2.16675 7.09175V3.31675C2.16675 2.7936 2.28621 2.55367 2.43114 2.4249C2.59115 2.28273 2.90161 2.16675 3.52508 2.16675H6.89175C7.51522 2.16675 7.82568 2.28273 7.98569 2.4249C8.13062 2.55367 8.25008 2.7936 8.25008 3.31675V7.10008C8.25008 7.6236 8.13046 7.86276 7.98642 7.99024C7.8275 8.13089 7.51808 8.24568 6.89489 8.24176Z" fill="#989FAB" stroke="#989FAB"/>
+                  <path d="M8.25008 13.1083V16.475C8.25008 17.0874 8.12387 17.3879 7.96424 17.5475C7.8046 17.7071 7.50417 17.8333 6.89175 17.8333H3.52508C2.91266 17.8333 2.61223 17.7071 2.45259 17.5475C2.29296 17.3879 2.16675 17.0874 2.16675 16.475V13.1083C2.16675 12.4959 2.29296 12.1955 2.45259 12.0358C2.61223 11.8762 2.91266 11.75 3.52508 11.75H6.89175C7.50417 11.75 7.8046 11.8762 7.96424 12.0358C8.12387 12.1955 8.25008 12.4959 8.25008 13.1083Z" fill="#989FAB" stroke="#989FAB"/>
+                  </svg>
+                  </i>
+                  <span class="text">Dashboard</span>
+                  <p class="pool-ball">
+                    <span class="number">8</span>
+                </p>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="icon ">
+            
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.86532 8.93311L9.92368 8.93516L9.96123 8.92765C9.96825 8.92738 9.97828 8.92716 9.99123 8.92716C10.0261 8.92716 10.0695 8.92873 10.1112 8.93194L10.1418 8.9343L10.1725 8.93289C12.0744 8.84556 13.5649 7.28295 13.5746 5.36927H13.5746V5.36675C13.5746 3.39894 11.9674 1.79175 9.99956 1.79175C8.03175 1.79175 6.42456 3.39894 6.42456 5.36675C6.42456 7.30297 7.9381 8.86531 9.86532 8.93311ZM10.1329 9.18341H10.1327H10.1326H10.1325H10.1323H10.1322H10.132H10.1319H10.1317H10.1316H10.1314H10.1313H10.1311H10.131H10.1309H10.1307H10.1306H10.1304H10.1303H10.1301H10.13H10.1299H10.1297H10.1296H10.1294H10.1293H10.1291H10.129H10.1289H10.1287H10.1286H10.1284H10.1283H10.1282H10.128H10.1279H10.1277H10.1276H10.1275H10.1273H10.1272H10.127H10.1269H10.1268H10.1266H10.1265H10.1263H10.1262H10.1261H10.1259H10.1258H10.1257H10.1255H10.1254H10.1252H10.1251H10.125H10.1248H10.1247H10.1246H10.1244H10.1243H10.1241H10.124H10.1239H10.1237H10.1236H10.1235H10.1233H10.1232H10.1231H10.1229H10.1228H10.1227H10.1225H10.1224H10.1223H10.1221H10.122H10.1219H10.1217H10.1216H10.1215H10.1213H10.1212H10.1211H10.1209H10.1208H10.1207H10.1205H10.1204H10.1203H10.1201H10.12H10.1199H10.1197H10.1196H10.1195H10.1193H10.1192H10.1191H10.1189H10.1188H10.1187H10.1186H10.1184H10.1183H10.1182H10.118H10.1179H10.1178H10.1176H10.1175H10.1174H10.1173H10.1171H10.117H10.1169H10.1167H10.1166H10.1165H10.1163H10.1162H10.1161H10.116H10.1158H10.1157H10.1156H10.1154H10.1153H10.1152H10.1151H10.1149H10.1148H10.1147H10.1146H10.1144H10.1143H10.1142H10.114H10.1139H10.1138H10.1137H10.1135H10.1134H10.1133H10.1132H10.113H10.1129H10.1128H10.1126H10.1125H10.1124H10.1123H10.1121H10.112H10.1119H10.1118H10.1116H10.1115H10.1114H10.1113H10.1111H10.111H10.1109H10.1108H10.1106H10.1105H10.1104H10.1103H10.1101H10.11H10.1099H10.1098H10.1096H10.1095H10.1094H10.1093H10.1091H10.109H10.1089H10.1088H10.1086H10.1085H10.1084H10.1083H10.1081H10.108H10.1079H10.1078H10.1077H10.1075H10.1074H10.1073H10.1072H10.107H10.1069H10.1068H10.1067H10.1065H10.1064H10.1063H10.1062H10.106H10.1059H10.1058H10.1057H10.1056H10.1054H10.1053H10.1052H10.1051H10.1049H10.1048H10.1047H10.1046H10.1045H10.1043H10.1042H10.1041H10.104H10.1038H10.1037H10.1036H10.1035H10.1033H10.1032H10.1031H10.103H10.1029C10.0319 9.17498 9.95953 9.17556 9.89339 9.18229C7.76289 9.0969 6.17456 7.42293 6.17456 5.36675C6.17456 3.25956 7.89237 1.54175 9.99956 1.54175C12.1064 1.54175 13.824 3.25903 13.8246 5.36578C13.8168 7.43841 12.1985 9.1132 10.1496 9.18341H10.1496H10.1495H10.1495H10.1494H10.1494H10.1493H10.1493H10.1493H10.1492H10.1492H10.1491H10.1491H10.149H10.149H10.1489H10.1489H10.1488H10.1488H10.1487H10.1487H10.1486H10.1486H10.1485H10.1485H10.1484H10.1484H10.1483H10.1483H10.1482H10.1482H10.1481H10.1481H10.148H10.148H10.1479H10.1479H10.1478H10.1478H10.1477H10.1477H10.1476H10.1476H10.1475H10.1475H10.1474H10.1474H10.1473H10.1473H10.1472H10.1472H10.1472H10.1471H10.1471H10.147H10.147H10.1469H10.1469H10.1468H10.1468H10.1467H10.1467H10.1466H10.1466H10.1465H10.1465H10.1464H10.1464H10.1463H10.1463H10.1462H10.1462H10.1461H10.1461H10.146H10.146H10.1459H10.1459H10.1458H10.1458H10.1457H10.1457H10.1456H10.1456H10.1455H10.1455H10.1454H10.1454H10.1453H10.1453H10.1452H10.1452H10.1451H10.1451H10.1451H10.145H10.145H10.1449H10.1449H10.1448H10.1448H10.1447H10.1447H10.1446H10.1446H10.1445H10.1445H10.1444H10.1444H10.1443H10.1443H10.1442H10.1442H10.1441H10.1441H10.144H10.144H10.1439H10.1439H10.1438H10.1438H10.1437H10.1437H10.1436H10.1436H10.1435H10.1435H10.1434H10.1434H10.1433H10.1433H10.1432H10.1432H10.1431H10.1431H10.1431H10.143H10.143H10.1429H10.1429H10.1428H10.1428H10.1427H10.1427H10.1426H10.1426H10.1425H10.1425H10.1424H10.1424H10.1423H10.1423H10.1422H10.1422H10.1421H10.1421H10.142H10.142H10.1419H10.1419H10.1418H10.1418H10.1417H10.1417H10.1416H10.1416H10.1415H10.1415H10.1414H10.1414H10.1413H10.1413H10.1412H10.1412H10.1411H10.1411H10.141H10.141H10.141H10.1409H10.1409H10.1408H10.1408H10.1407H10.1407H10.1406H10.1406H10.1405H10.1405H10.1404H10.1404H10.1403H10.1403H10.1402H10.1402H10.1401H10.1401H10.14H10.14H10.1399H10.1399H10.1398H10.1398H10.1397H10.1397H10.1396H10.1396H10.1395H10.1395H10.1394H10.1394H10.1393H10.1393H10.1392H10.1392H10.1391H10.1391H10.139H10.139H10.1389H10.1389H10.1389H10.1388H10.1388H10.1387H10.1387H10.1386H10.1386H10.1385H10.1385H10.1384H10.1384H10.1383H10.1383H10.1382H10.1382H10.1381H10.1381H10.138H10.138H10.1379H10.1379H10.1378H10.1378H10.1377H10.1377H10.1376H10.1376H10.1375H10.1375H10.1374H10.1374H10.1373H10.1373H10.1372H10.1372H10.1371H10.1371H10.137H10.137H10.1369H10.1369H10.1368H10.1368H10.1368H10.1367H10.1367H10.1366H10.1366H10.1365H10.1365H10.1364H10.1364H10.1363H10.1363H10.1362H10.1362H10.1361H10.1361H10.136H10.136H10.1359H10.1359H10.1358H10.1358H10.1357H10.1357H10.1356H10.1356H10.1355H10.1355H10.1354H10.1354H10.1353H10.1353H10.1352H10.1352H10.1351H10.1351H10.135H10.135H10.1349H10.1349H10.1348H10.1348H10.1347H10.1347H10.1347H10.1346H10.1346H10.1345H10.1345H10.1344H10.1344H10.1343H10.1343H10.1342H10.1342H10.1341H10.1341H10.134H10.134H10.1339H10.1339H10.1338H10.1338H10.1337H10.1337H10.1336H10.1336H10.1335H10.1335H10.1334H10.1334H10.1333H10.1333H10.1332H10.1332H10.1331H10.1331H10.133H10.133H10.1329H10.1329Z" fill="#292D32" stroke="#989FAB"/>
+                    <path d="M5.90331 17.1264L5.90332 17.1264L5.90064 17.1246C4.84849 16.4283 4.33301 15.5204 4.33301 14.5833C4.33301 13.6452 4.84942 12.7288 5.90189 12.0244C7.05338 11.2608 8.58903 10.8645 10.1476 10.8645C11.7067 10.8645 13.2378 11.2611 14.3803 12.0241L14.3807 12.0243C15.4274 12.7221 15.9497 13.631 15.9497 14.5666C15.9497 15.5048 15.433 16.4214 14.3801 17.1259C13.2285 17.8935 11.6972 18.2916 10.1413 18.2916C8.58436 18.2916 7.04543 17.8929 5.90331 17.1264ZM6.03899 12.2422C5.15087 12.8343 4.58301 13.6546 4.58301 14.5916C4.58301 15.5229 5.16212 16.3424 6.03895 16.9243C7.17766 17.6875 8.67451 18.052 10.1413 18.052C11.6083 18.052 13.1054 17.6875 14.2441 16.924C15.132 16.3319 15.6997 15.5118 15.6997 14.5749C15.6997 13.6434 15.1203 12.8237 14.2432 12.2419C13.1046 11.483 11.6079 11.1208 10.1413 11.1208C8.67458 11.1208 7.17768 11.4831 6.03899 12.2422Z" fill="#292D32" stroke="#989FAB"/>
+                    </svg>
+                    
+                  </i>
+                  <span class="text">Audience</span>
+                  <i class="arrow">
+                    
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#CBD5E0"/>
+                    </svg>
+  
+                  </i>
+                </a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">
+                      <span class="text">Users</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="text">Subcribers</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="active">
+                <a href="#">
+                  <i class="icon">
+                    
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5001 18.4584H7.50008C5.29498 18.4584 3.84042 17.9854 2.92759 17.0726C2.01476 16.1597 1.54175 14.7052 1.54175 12.5001V7.50008C1.54175 5.29498 2.01476 3.84042 2.92759 2.92759C3.84042 2.01476 5.29498 1.54175 7.50008 1.54175H11.6667C11.6969 1.54175 11.7282 1.55403 11.7538 1.57968C11.7795 1.60532 11.7917 1.6366 11.7917 1.66675C11.7917 1.6969 11.7795 1.72818 11.7538 1.75382C11.7282 1.77946 11.6969 1.79175 11.6667 1.79175H7.50008C5.54397 1.79175 4.06899 2.13449 3.10174 3.10174C2.13449 4.06899 1.79175 5.54397 1.79175 7.50008V12.5001C1.79175 14.4562 2.13449 15.9312 3.10174 16.8984C4.06899 17.8657 5.54397 18.2084 7.50008 18.2084H12.5001C14.4562 18.2084 15.9312 17.8657 16.8984 16.8984C17.8657 15.9312 18.2084 14.4562 18.2084 12.5001V8.33342C18.2084 8.30327 18.2207 8.27199 18.2463 8.24634C18.272 8.2207 18.3033 8.20842 18.3334 8.20842C18.3636 8.20842 18.3948 8.2207 18.4205 8.24634C18.4461 8.27199 18.4584 8.30327 18.4584 8.33342V12.5001C18.4584 14.7052 17.9854 16.1597 17.0726 17.0726C16.1597 17.9854 14.7052 18.4584 12.5001 18.4584Z" fill="#292D32" stroke="#989FAB"/>
+                    <path d="M11.6078 1.55711L11.6149 1.55432L11.6219 1.55131C11.6558 1.5368 11.7104 1.53847 11.7601 1.584L18.4214 8.24529C18.4559 8.27981 18.4659 8.33796 18.4487 8.37811C18.4259 8.43132 18.3793 8.45841 18.3333 8.45841H15C13.6209 8.45841 12.7978 8.18669 12.3056 7.69444C11.8133 7.20218 11.5416 6.37917 11.5416 5.00007V1.66674C11.5416 1.64137 11.5494 1.61601 11.5631 1.59522C11.5765 1.57493 11.5927 1.56305 11.6078 1.55711ZM12.6452 2.82152L11.7916 1.96797V3.17507V5.00007C11.7916 6.07541 11.9199 6.94794 12.486 7.51404C13.0521 8.08014 13.9246 8.20841 15 8.20841H16.825H18.0321L17.1785 7.35485L12.6452 2.82152Z" fill="#292D32" stroke="#989FAB"/>
+                    <path d="M10.8333 10.9583H5.83325C5.8031 10.9583 5.77182 10.946 5.74618 10.9203C5.72054 10.8947 5.70825 10.8634 5.70825 10.8333C5.70825 10.8031 5.72054 10.7718 5.74618 10.7462C5.77182 10.7205 5.8031 10.7083 5.83325 10.7083H10.8333C10.8634 10.7083 10.8947 10.7205 10.9203 10.7462C10.946 10.7718 10.9583 10.8031 10.9583 10.8333C10.9583 10.8634 10.946 10.8947 10.9203 10.9203C10.8947 10.946 10.8634 10.9583 10.8333 10.9583Z" fill="#292D32" stroke="#989FAB"/>
+                    <path d="M9.16659 14.2917H5.83325C5.8031 14.2917 5.77182 14.2795 5.74618 14.2538C5.72054 14.2282 5.70825 14.1969 5.70825 14.1667C5.70825 14.1366 5.72054 14.1053 5.74618 14.0797C5.77182 14.054 5.8031 14.0417 5.83325 14.0417H9.16659C9.19673 14.0417 9.22801 14.054 9.25366 14.0797C9.2793 14.1053 9.29159 14.1366 9.29159 14.1667C9.29159 14.1969 9.2793 14.2282 9.25366 14.2538C9.22801 14.2795 9.19673 14.2917 9.16659 14.2917Z" fill="#292D32" stroke="#989FAB"/>
+                    </svg>
+  
+                  </i>
+                  <span class="text">Posts</span>
+                </a>
+              </li>
+              <li >
+                <a href="#">
+                  <i class="icon">
+                    
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.66675 1.66675V4.16675" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M13.3334 1.66675V4.16675" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.91675 7.57495H17.0834" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M17.5 7.08341V14.1667C17.5 16.6667 16.25 18.3334 13.3333 18.3334H6.66667C3.75 18.3334 2.5 16.6667 2.5 14.1667V7.08341C2.5 4.58341 3.75 2.91675 6.66667 2.91675H13.3333C16.25 2.91675 17.5 4.58341 17.5 7.08341Z" stroke="#989FAB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M13.079 11.4167H13.0864" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M13.079 13.9167H13.0864" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.9962 11.4167H10.0037" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.9962 13.9167H10.0037" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6.91185 11.4167H6.91933" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6.91185 13.9167H6.91933" stroke="#989FAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+  
+                  </i>
+                  <span class="text">Schedules</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="icon ">
+
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.66675 4.29175C6.6366 4.29175 6.60532 4.27946 6.57968 4.25382C6.55403 4.22818 6.54175 4.1969 6.54175 4.16675V1.66675C6.54175 1.6366 6.55403 1.60532 6.57968 1.57968C6.60532 1.55403 6.6366 1.54175 6.66675 1.54175C6.6969 1.54175 6.72818 1.55403 6.75382 1.57968C6.77946 1.60532 6.79175 1.6366 6.79175 1.66675V4.16675C6.79175 4.1969 6.77946 4.22818 6.75382 4.25382C6.72818 4.27946 6.6969 4.29175 6.66675 4.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                    <path d="M13.3334 4.29175C13.3032 4.29175 13.2719 4.27946 13.2463 4.25382C13.2207 4.22818 13.2084 4.1969 13.2084 4.16675V1.66675C13.2084 1.6366 13.2207 1.60532 13.2463 1.57968C13.2719 1.55403 13.3032 1.54175 13.3334 1.54175C13.3635 1.54175 13.3948 1.55403 13.4204 1.57968C13.4461 1.60532 13.4584 1.6366 13.4584 1.66675V4.16675C13.4584 4.1969 13.4461 4.22818 13.4204 4.25382C13.3948 4.27946 13.3635 4.29175 13.3334 4.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                    <path d="M13.3333 18.4584H6.66667C5.24074 18.4584 4.18404 18.0499 3.48376 17.3497C2.78348 16.6494 2.375 15.5927 2.375 14.1667V7.08342C2.375 5.65749 2.78348 4.60079 3.48376 3.90051C4.18404 3.20023 5.24074 2.79175 6.66667 2.79175H13.3333C14.7593 2.79175 15.816 3.20023 16.5162 3.90051C17.2165 4.60079 17.625 5.65749 17.625 7.08342V14.1667C17.625 15.5927 17.2165 16.6494 16.5162 17.3497C15.816 18.0499 14.7593 18.4584 13.3333 18.4584ZM6.66667 3.04175C5.40151 3.04175 4.36464 3.34917 3.64853 4.06528C2.93242 4.78139 2.625 5.81826 2.625 7.08342V14.1667C2.625 15.4319 2.93242 16.4688 3.64853 17.1849C4.36464 17.901 5.40151 18.2084 6.66667 18.2084H13.3333C14.5985 18.2084 15.6354 17.901 16.3515 17.1849C17.0676 16.4688 17.375 15.4319 17.375 14.1667V7.08342C17.375 5.81826 17.0676 4.78139 16.3515 4.06528C15.6354 3.34917 14.5985 3.04175 13.3333 3.04175H6.66667Z" fill="#989FAB" stroke="#989FAB"/>
+                    <path d="M13.3334 9.29175H6.66675C6.6366 9.29175 6.60532 9.27946 6.57968 9.25382C6.55403 9.22818 6.54175 9.1969 6.54175 9.16675C6.54175 9.1366 6.55403 9.10532 6.57968 9.07968C6.60532 9.05403 6.6366 9.04175 6.66675 9.04175H13.3334C13.3636 9.04175 13.3948 9.05403 13.4205 9.07968C13.4461 9.10532 13.4584 9.1366 13.4584 9.16675C13.4584 9.1969 13.4461 9.22818 13.4205 9.25382C13.3948 9.27946 13.3636 9.29175 13.3334 9.29175Z" fill="#989FAB" stroke="#989FAB"/>
+                    <path d="M10.0001 13.9583H6.66675C6.32508 13.9583 6.04175 13.6749 6.04175 13.3333C6.04175 12.9916 6.32508 12.7083 6.66675 12.7083H10.0001C10.3417 12.7083 10.6251 12.9916 10.6251 13.3333C10.6251 13.6749 10.3417 13.9583 10.0001 13.9583Z" fill="#989FAB"/>
+                    </svg>
+
+                  </i>
+                  <span class="text">Income</span>
+                  <i class="arrow">
+                    
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#CBD5E0"/>
+                  </svg>
+  
+                  </i>
+                </a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">
+                      <span class="text">Earnings</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="text">Funds</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="text">Declines</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="text">Payouts</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="menu">
+            <p class="title">Settings</p>
+            <ul>
+              <li>
+                <a href="#">
+                  <i class="icon ph-bold ph-gear"></i>
+                  <span class="text">Settings</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="menu">
+          <p class="title">Account</p>
+          <ul>
+            <li>
+              <a href="#">
+                <i class="icon ph-bold ph-info"></i>
+                <span class="text">Help</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="icon ph-bold ph-sign-out"></i>
+                <span class="text">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+      integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        $(".menu > ul > li").click(function(e){
+            // remove active from already active
+            $(this).siblings().removeClass("active");
+            // add active to clicked
+            $(this).toggleClass("active");
+            // if has sub menu open it
+            $(this).find("ul").slideToggle();
+            // close other sub menu if any open
+            $(this).siblings().find("ul").slideUp();
+            // remove active class of sub menu items
+            $(this).siblings().find("ul").find("li").removeClass("active");
+        });
+
+        $(".menu-button").click(function(){
+            $(".sidebar").toggleClass("active");
+        });
+    </script>
+  </body>
+</html>
