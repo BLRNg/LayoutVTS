@@ -678,7 +678,7 @@
   }
 
   .window__taskbar--actions button:nth-child(3)::after {
-    content: "⤡";
+    content: "🗗";
   }
 
   .window__taskbar--actions button:nth-child(3):hover {
@@ -805,7 +805,7 @@
     </style>
   </head>
   
-  <body >
+  <body>
     
 
 
@@ -865,7 +865,7 @@
 
     <div class="container__Window">
           <!-- Terminal -->
-          <div class="window employee">
+          <!-- <div class="window employee">
             <div class="window__taskbar">
               <div class="window__taskbar--actions">
                 <button class="close"></button>
@@ -1088,7 +1088,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
     </div>
 
      <!-- Widgets panel -->
@@ -1335,6 +1335,7 @@
     } else {
        return;
     }
+    
 
 
     const appButton = document.createElement('button');
@@ -1344,6 +1345,15 @@
             <path d="${appToAdd.img}" transform="rotate(-180, 512, 512)" />
         </svg>
       `;
+
+      appButton.classList.add(`open-${appToAdd.id}`);
+      
+      appButton.addEventListener('click', function(e){
+        insertEmployeeWindow(`${appToAdd.id}`,`${appToAdd.name}`);
+
+        const windown = document.querySelector(`.window.${appToAdd.id}`);
+        open_window(windown, null, null)
+      });
 
       // Add event listener for right-click (contextmenu event)
       appButton.addEventListener('contextmenu', function(event) {
@@ -1451,6 +1461,16 @@
             <strong>${app.name}</strong>
             `;
 
+
+            appDiv.classList.add(`open-${app.id}`);
+      
+            appDiv.addEventListener('click', function(e){
+            insertEmployeeWindow(`${app.id}`,`${app.name}`);
+
+            const windown = document.querySelector(`.window.${app.id}`);
+              open_window(windown, null, null)
+            });
+
             // Add event listener for right-click (contextmenu event)
             appDiv.addEventListener('contextmenu', function(event) {
               rightClick(event, app.id);
@@ -1488,10 +1508,22 @@
           appButton.classList.add('icon',`${app.id}`);
           if(elementIndex  === 1){
             appButton.classList.add('open-lunchpad');
+          }else{
+            appButton.classList.add(`open-${app.id}`);
+            
+            appButton.addEventListener('click', function(e){
+              insertEmployeeWindow(`${app.id}`,`${app.name}`);
+
+              const windown = document.querySelector(`.window.${app.id}`);
+              open_window(windown, null, null)
+            });
+
           }
-          if(elementIndex === 0){
-            appButton.classList.add('open-employee');
-          }
+          // if(elementIndex === 0){
+          //   appButton.classList.add('open-employee');
+          // }
+
+         
           
           appButton.innerHTML  = `
             <svg width="40" height="40" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >
@@ -1652,6 +1684,215 @@
     </script>
 
     <script>
+      function insertOrUpdateStyles(styleId, innerHTMLStyle) {
+    // Check if the style element with a unique id already exists
+    let styleElement = document.getElementById(`${styleId}`);
+
+    // If the style element doesn't exist, create a new one
+    if (!styleElement) {
+        styleElement = document.createElement('style');
+        styleElement.id = `${styleId}`;
+        document.head.appendChild(styleElement);
+    }
+
+    // Update the inner content of the style element
+    styleElement.innerHTML = `
+        ${innerHTMLStyle}
+    `;
+}
+
+// Call the function to insert or update the styles
+    // insertOrUpdateStyles('sizeWindown', `
+
+    //   .window__taskbar--actions button:nth-child(3)::after {
+    //     content: "🗗";
+    //   }
+
+    // `);
+
+    </script>
+
+    <script>
+
+      // Function to create the Employee window
+      function createEmployeeWindow(menuId,menuName) {
+          // Create the main window div
+          let windowDiv = document.createElement('div');
+          windowDiv.classList.add('window', `${menuId}`);
+
+          // Create the window taskbar div
+          let taskbarDiv = document.createElement('div');
+          taskbarDiv.classList.add('window__taskbar');
+
+          // Create the taskbar actions div
+          let taskbarActionsDiv = document.createElement('div');
+          taskbarActionsDiv.classList.add('window__taskbar--actions');
+
+          // Create the buttons and add them to the actions div
+          let closeButton = document.createElement('button');
+          closeButton.classList.add(`close-${menuId}`);
+          taskbarActionsDiv.appendChild(closeButton);
+
+          let backFullButton = document.createElement('button');
+          backFullButton.classList.add(`backfull-${menuId}`);
+          taskbarActionsDiv.appendChild(backFullButton);
+
+          let fullButton = document.createElement('button');
+          fullButton.classList.add(`full-${menuId}`);
+          taskbarActionsDiv.appendChild(fullButton);
+
+          // Add actions div to taskbar div
+          taskbarDiv.appendChild(taskbarActionsDiv);
+
+          // Create the taskbar content div
+          let taskbarContentDiv = document.createElement('div');
+          taskbarContentDiv.classList.add('window__taskbar--content');
+
+          // Create the h2 element and add it to the content div
+          let h2Element = document.createElement('h2');
+          h2Element.textContent = `${menuName}`;
+          taskbarContentDiv.appendChild(h2Element);
+
+          // Add content div to taskbar div
+          taskbarDiv.appendChild(taskbarContentDiv);
+
+          // Create the window content div
+          let windowContentDiv = document.createElement('div');
+          windowContentDiv.classList.add('window_content');
+
+          // Add taskbar div and content div to the main window div
+          windowDiv.appendChild(taskbarDiv);
+          windowDiv.appendChild(windowContentDiv);
+
+          return windowDiv;
+      }
+
+      // Function to insert the Employee window into the container and assign events
+      function insertEmployeeWindow(menuId,menuName) {
+        let existingWindow = document.querySelector(`.container__Window .${menuId}`);
+        if(!existingWindow){
+          // Find the container div
+          let containerWindowDiv = document.querySelector('.container__Window');
+
+          // Create the window structure and insert it into the container
+          let newWindow = createEmployeeWindow(menuId,menuName);
+          containerWindowDiv.appendChild(newWindow);
+
+          // Terminal App object
+          const terminalApp = {
+              window: newWindow,
+              full: newWindow.querySelector(`.full-${menuId}`),
+              close: newWindow.querySelector(`.close-${menuId}`),
+              backfull: newWindow.querySelector(`.backfull-${menuId}`),
+              point: document.querySelector("#point-terminal"),  // assuming this already exists
+              content: newWindow.querySelector(".window_content"),
+              taskbar: newWindow.querySelector(".window__taskbar"),
+              opening: document.querySelector(`.open-${menuId}`)  // assuming this already exists
+          };
+
+          // Make the window draggable
+          $(function () {
+              $(newWindow).draggable();
+          });
+
+          // Assign event listeners to the buttons
+          // terminalApp.opening.addEventListener("click", () =>
+          //     open_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+          // );
+          terminalApp.close.addEventListener("click", () =>
+              // close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+              containerWindowDiv.removeChild(terminalApp.window)
+          );
+          terminalApp.backfull.addEventListener("click", () =>
+              handleMinimize(terminalApp.window)
+          );
+          terminalApp.full.addEventListener("click", () => {
+            if(isMinimized(terminalApp.window))
+            {
+              handleFullScreen(terminalApp.window);
+            }else{
+              handleMinimize(terminalApp.window);
+            }
+          }
+             
+          );
+
+          ChangeZIndexWindow(newWindow);
+
+    
+        }  
+      }
+
+
+      function ChangeZIndexWindow(newWindow){
+
+               // Assign events for drag and long-click on the window header
+            const header = newWindow;
+            let offsetX, offsetY;
+            const longClickDuration = 500; // Time in milliseconds for a long click
+            let longClickTimeout;
+
+            // Function to bring the window to the front
+            function bringToFront() {
+                newWindow.style.zIndex = 1000;
+                resetOtherZIndexes(newWindow);
+            }
+
+            // Reset z-index for other windows
+            function resetOtherZIndexes(activeWindow) {
+                const windows = document.querySelectorAll('.window');
+                windows.forEach(win => {
+                    if (win !== activeWindow) {
+                        win.style.zIndex = 11;
+                    }
+                });
+            }
+
+            // Click and long click event
+            header.addEventListener('mousedown', (e) => {
+                // Start long click timer
+                longClickTimeout = setTimeout(bringToFront, longClickDuration);
+
+                // Store offset for dragging
+                offsetX = e.clientX - newWindow.getBoundingClientRect().left;
+                offsetY = e.clientY - newWindow.getBoundingClientRect().top;
+
+                // Bring window to front on mouse down
+                bringToFront();
+
+                // Add mousemove and mouseup listeners
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+            });
+
+            function mouseMoveHandler(e) {
+                newWindow.style.left = `${e.clientX - offsetX}px`;
+                newWindow.style.top = `${e.clientY - offsetY}px`;
+            }
+
+            function mouseUpHandler() {
+                // Clear the long click timer
+                clearTimeout(longClickTimeout);
+
+                // Reset z-index for other windows
+                resetOtherZIndexes(newWindow);
+
+                // Remove mousemove and mouseup listeners
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            }
+
+            // Click event for immediate z-index change
+            header.addEventListener('click', () => {
+                bringToFront();
+            });
+
+      }
+
+
+
+
+
       /********** ELEMENTS **********/
     const elements = {
       body: document.querySelector("body"),
@@ -1673,42 +1914,42 @@
     };
 
 
-    // Terminal App
-    const terminalApp = {
-      app_name: document.querySelector("#Terminal"),
-      window: document.querySelector(".employee"),
-      full: document.querySelector(".full"),
-      close: document.querySelector(".close"),
-      backfull: document.querySelector(".backfull"),
-      point: document.querySelector("#point-terminal"),
-      content: document.querySelector(".terminal .terminal_content"),
-      taskbar: document.querySelector(".terminal .window__taskbar"),
-      opening: document.querySelector(".open-employee")
-    };
+    // // Terminal App
+    // const terminalApp = {
+    //   app_name: document.querySelector("#Terminal"),
+    //   window: document.querySelector(".employee"),
+    //   full: document.querySelector(".full"),
+    //   close: document.querySelector(".close"),
+    //   backfull: document.querySelector(".backfull"),
+    //   point: document.querySelector("#point-terminal"),
+    //   content: document.querySelector(".terminal .terminal_content"),
+    //   taskbar: document.querySelector(".terminal .window__taskbar"),
+    //   opening: document.querySelector(".open-employee")
+    // };
 
 
-    // App draggable
-    $(function () {
-      $(".employee").draggable();
-    });
+    // // App draggable
+    // $(function () {
+    //   $(".employee").draggable();
+    // });
 
 
 
-    terminalApp.opening.addEventListener("click", () =>
-      open_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
-    );
-    terminalApp.close.addEventListener("click", () =>
-      close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
-    );
+    // terminalApp.opening.addEventListener("click", () =>
+    //   open_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+    // );
+    // terminalApp.close.addEventListener("click", () =>
+    //   close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+    // );
 
 
-    terminalApp.backfull.addEventListener("click", () =>
-      handleMinimize(terminalApp.window)
-    );
+    // terminalApp.backfull.addEventListener("click", () =>
+    //   handleMinimize(terminalApp.window)
+    // );
 
-    terminalApp.full.addEventListener("click", () =>
-      handleFullScreen(terminalApp.window)
-    );
+    // terminalApp.full.addEventListener("click", () =>
+    //   handleFullScreen(terminalApp.window)
+    // );
 
     
 
@@ -1740,13 +1981,20 @@
     const maxWidth = window.getComputedStyle(element).maxWidth;
     const minWidth = window.getComputedStyle(element).minWidth;
    
-    return maxWidth === "80%" && minWidth === "70%";
+    return maxWidth === "50%" && minWidth === "50%";
   }
 
     function handleMinimize(Minimize) {
-      Minimize.style.maxWidth = "80%";
-      Minimize.style.minWidth = "70%";
+      Minimize.style.maxWidth = "50%";
+      Minimize.style.minWidth = "50%";
       Minimize.style.height = "50%";
+      insertOrUpdateStyles('sizeWindown', `
+
+    .window__taskbar--actions button:nth-child(3)::after {
+      content: "🗖";
+    }
+
+    `);
       if (isMinimized(Minimize)) {
       console.log("Element is now minimized.");
     }
@@ -1756,6 +2004,13 @@
       maximize.style.maxWidth = "100%";
       maximize.style.minWidth = "100%";
       maximize.style.height = "100%";
+      insertOrUpdateStyles('sizeWindown', `
+
+      .window__taskbar--actions button:nth-child(3)::after {
+        content: "🗗";
+      }
+
+    `);
       if (!isMinimized(maximize)) {
       console.log("Element is now in fullscreen mode.");
     } else{
@@ -1774,17 +2029,28 @@
     }
 
     function open_window(open, point, appName) {
-      // elements.navbar.style.display = "flex";
+      // Ensure the open element is displayed
       open.style.display = "block";
-      open.style.position = "absolute";
+      open.style.position = "absolute"; // Allow absolute positioning
+          
+      const centerX = 0;
+      const centerY = 0;
+      
+      // Position the window in the center of the screen
+      open.style.left = `${centerX}px`;
+      open.style.top = `${centerY}px`;
+
+      // Show other UI elements
       launchpad.container.style.display = "flex";
       launchpad.window.style.display = "none";
       elements.spotlight_search.style.display = "flex";
       elements.widgetsPanel.style.display = "block";
-      // launchpad.point.style.display = "none";
-      // appName.style.display = "block";
+
+      // Uncomment if needed:
       // point.style.display = "block";
+      // appName.style.display = "block";
     }
+
 
     // Launchpad function start
     launchpad.opening.addEventListener("click", handleOpenLaunching);
