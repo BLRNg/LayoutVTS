@@ -223,7 +223,7 @@
     }
 
 
-    .spotlight_serach {
+    /* .spotlight_serach {
       width: 400px;
       height: 50px;
       display: flex;
@@ -253,7 +253,7 @@
     }
     .spotlight_serach input::placeholder {
       color: white;
-    }
+    } */
 
     .launchpad {
       display: none;
@@ -594,6 +594,7 @@
         align-items: center;
         position: absolute;
         display: none; 
+        
       }
 
       .window {
@@ -609,6 +610,7 @@
       animation: zoom-out 0.3s;
       z-index: 100;
       touch-action: none;
+      transition: transform 0.7s ease, opacity 0.7s ease, width 0.7s ease, height 0.7s ease;
     }
 
     .window__taskbar {
@@ -825,7 +827,92 @@
       }
 
 
-    
+      .spotlight_serach {
+      width: 440px;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%) ;
+      border-radius: 16px;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      position: absolute;
+    }
+
+    /* Use flexbox to align the icon and input field */
+    .spotlight_search-bar-wrapper {
+      display: flex;
+      align-items: center;
+      border-radius: 16px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .spotlight_search-bar {
+      height: 50px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      width: 90%;
+      font-size: 20px;
+      font-weight: 100;
+      font-family: Lexend;
+      margin-left: 10px;
+      padding-right: 10px;
+      color: var(--app-color-white);
+    }
+
+    .spotlight_search-icon {
+      margin-left: 10px;
+      fill: #010003; /* Color of the SVG icon */
+      margin-top: 0;
+    }
+
+    .spotlight_serach input::placeholder {
+      color: var(--app-color-white);
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .result-app {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-app svg {
+      width: 30px;
+      height: 30px;
+      background-color: #e6e6e6;
+      border-radius: 5px;
+      margin: 0;
+      margin-right: 10px;
+    }
+
+    .app-info {
+      font-size: 16px;
+    }
+
+    .app-info .app-name {
+      font-weight: bold;
+      color: var(--app-color-white);
+    }
+
+    .app-info .app-details {
+      color: gray;
+      font-size: 12px;
+    }
+
+
+
          
     </style>
   </head>
@@ -907,8 +994,8 @@
                   <div class="header-left">
                       <button class="menu-button">&#9776;</button>
                       <img src="https://phanmemtinhluong.com/wp-content/uploads/2023/11/cropped-ParadiseHRCopyRight.png" alt="Logo" class="logo">
-                      <div class="search-container">
-                        <i class="search-icon">
+                      <div class="spotlight_serach">
+                        <i class="spotlight_search-icon">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80541 2.93994C6.01372 2.93994 2.93994 6.01372 2.93994 9.80541C2.93994 13.5971 6.01372 16.6709 9.80541 16.6709C13.5971 16.6709 16.6709 13.5971 16.6709 9.80541C16.6709 6.01372 13.5971 2.93994 9.80541 2.93994ZM1.68994 9.80541C1.68994 5.32336 5.32336 1.68994 9.80541 1.68994C14.2875 1.68994 17.9209 5.32336 17.9209 9.80541C17.9209 14.2875 14.2875 17.9209 9.80541 17.9209C5.32336 17.9209 1.68994 14.2875 1.68994 9.80541Z" fill="#21252B"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5727 14.9628C14.8164 14.7184 15.2121 14.7179 15.4565 14.9617L18.3932 17.8907C18.6376 18.1345 18.6381 18.5302 18.3944 18.7746C18.1506 19.019 17.7549 19.0195 17.5105 18.7758L14.5738 15.8467C14.3294 15.6029 14.3289 15.2072 14.5727 14.9628Z" fill="#21252B"/>
@@ -1140,7 +1227,22 @@
       </div>
     </section>
     <!-- Widgets panel -->
-
+    <div class="spotlight_serach"> 
+      <div class="spotlight_search-bar-wrapper">
+        <svg class="spotlight_search-icon" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
+          />
+        </svg>
+        <input type="search" class="spotlight_search-bar" placeholder="Spotlight Search" />
+      </div>
+    
+      <div class="result">
+     
+      </div>
+    </div>
+    
+<!-- 
     <div class="spotlight_serach">
       <svg width="24" height="24">
         <path
@@ -1148,7 +1250,7 @@
         />
       </svg>
       <input type="search" placeholder="Spotlight Search" />
-    </div>
+    </div> -->
 
     
     <script>
@@ -1197,6 +1299,7 @@
     let filteredApps = apps;
     let totalPages = 0;
     let currentSelectedMenu = null;
+    const currentAppIdOpen = new Set();
 
     const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
@@ -1334,7 +1437,7 @@
     }
 
 
-    function handlePinToTaskbarClick() {
+    function handlePinToTaskbarClick(isInsertAtTheEnd) {
       // appsDock.push(findAppById(currentSelectedMenu));
       const appToAdd = findAppById(currentSelectedMenu);
       const appsDockContainer = document.querySelector('.dock');
@@ -1352,7 +1455,17 @@
               appsDock = appsDock.filter(app => app.id !== currentSelectedMenu);
               removeButtonAtIndex(indexAppDock);
             }
-            insertAppAtIndex(findSecondHrIndex(appsDockContainer) - 1, appToAdd);
+        
+            if(isInsertAtTheEnd){
+              appsDock.push(appToAdd);
+            }else{
+              if(currentAppIdOpen.has(appToAdd.id)){
+                currentAppIdOpen.delete(appToAdd.id);
+              }
+              insertAppAtIndex(findSecondHrIndex(appsDockContainer) - 1, appToAdd);
+            }
+           
+          
            
         } else {
            return;
@@ -1388,9 +1501,13 @@
       // Find the second <hr> element
       const allHrElements = appsDockContainer.querySelectorAll('hr');
       const secondHr = allHrElements[1]; //insert before the second <hr>
-  
-      // appsDockContainer.appendChild(appButton);
-      appsDockContainer.insertBefore(appButton, secondHr);
+          
+      if(isInsertAtTheEnd){
+        appsDockContainer.appendChild(appButton);
+      }else{
+        appsDockContainer.insertBefore(appButton, secondHr);
+      }
+     
       secondHrElement ++;
     //Update style
      
@@ -1493,7 +1610,18 @@
             insertEmployeeWindow(`${app.id}`,`${app.name}`);
 
             const windown = document.querySelector(`.window.${app.id}`);
-              open_window(windown, null, null)
+              open_window(windown, null, null);
+
+             
+              if(!appsDock.some(appItem => appItem.id === app.id)){
+                currentAppIdOpen.add(app.id);
+              }
+
+              currentSelectedMenu = app.id;
+              handlePinToTaskbarClick(true);
+
+             
+              console.log(currentAppIdOpen);
             });
 
             // Add event listener for right-click (contextmenu event)
@@ -1674,10 +1802,13 @@
             totalPages = Math.ceil(filteredApps.length / itemsPerPage);
             currentPage = 1;
         } else {
+             // Normalize both the search query and the app data to ignore accents
+             const queryLower = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
             filteredApps = apps.filter(app => {
-                const keywords = app.keywords.toLowerCase().split(',');
-                const name = app.name.toLowerCase();
-                const queryLower = query.toLowerCase();
+                const keywords = app.keywords.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(',');
+                const name = app.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
                 return (
                     keywords.some(keyword => keyword.includes(queryLower)) || 
                     name.includes(queryLower) || 
@@ -1694,6 +1825,106 @@
         currentPage = 1; // Reset to first page
         renderApps(currentPage);
     }
+
+    function addResultApp(id,name, details, icon) {
+        // Select the result container
+        const resultContainer = document.querySelector('.result');
+
+        // Create a new div for the result-app
+        const resultApp = document.createElement('div');
+        resultApp.classList.add('result-app');
+        resultApp.setAttribute('data-name', name);
+
+        // Create the app-info section
+        const appInfo = document.createElement('div');
+        appInfo.classList.add('app-info');
+
+        const appName = document.createElement('div');
+        appName.classList.add('app-name');
+        appName.textContent = name;
+
+        const appDetails = document.createElement('div');
+        appDetails.classList.add('app-details');
+        appDetails.textContent = details;
+
+        // Append the app name and details to app-info
+        appInfo.appendChild(appName);
+        appInfo.appendChild(appDetails);
+
+        // Append the icon and info to result-app
+        resultApp.innerHTML = icon;
+        resultApp.appendChild(appInfo);
+
+        resultApp.addEventListener('click', function(e){
+        insertEmployeeWindow(`${id}`,`${name}`);
+
+        const windown = document.querySelector(`.window.${id}`);
+          open_window(windown, null, null);
+
+          if(!appsDock.some(appItem => appItem.id === id)){
+                currentAppIdOpen.add(id);
+              }
+
+              currentSelectedMenu = id;
+              handlePinToTaskbarClick(true);
+
+        });
+
+        // Append the new result-app to the result container
+        resultContainer.appendChild(resultApp);
+    }
+
+       // Debounced search
+    const searchInputSpotlight = document.querySelector('.spotlight_search-bar');
+    searchInputSpotlight.addEventListener('input',()=>{
+
+      const resultContainer = document.querySelector('.result');
+      resultContainer.innerHTML = '';
+      resultContainer.style.display = 'none';
+
+      const query = event.target.value;
+      if (query !== '') {
+             // Normalize both the search query and the app data to ignore accents
+             const queryLower = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            const filteredApps = apps.filter(app => {
+                const keywords = app.keywords.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(',');
+                const name = app.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                return (
+                    keywords.some(keyword => keyword.includes(queryLower)) || 
+                    name.includes(queryLower) || 
+                    fuzzyMatch(queryLower, name)
+                );
+            });
+
+            if(filteredApps.length > 0){
+              resultContainer.style.display = 'block';
+              filteredApps.forEach( item => {
+            addResultApp(
+              `${item.id}`,
+              `${item.name}`,
+              "5.6 MB · PDF Document · Modified yesterday",`
+              <svg class="app-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M25 17.1875C27.5888 17.1875 29.6875 15.0888 29.6875 12.5C29.6875 9.91117 27.5888 7.8125 25 7.8125C22.4112 7.8125 20.3125 9.91117 20.3125 12.5C20.3125 15.0888 22.4112 17.1875 25 17.1875Z" fill="#FFCC80"></path>
+                      <path d="M21.875 18.75C21.875 15.625 28.125 15.625 28.125 18.75C28.125 21.875 28.125 25 21.875 25V18.75Z" fill="#4A90E2"></path>
+                      <path d="M26.5625 25H23.4375V28.125H26.5625V25Z" fill="#7B8DAB"></path>
+                      <path d="M15.625 33.5938C17.7824 33.5938 19.5312 31.8449 19.5312 29.6875C19.5312 27.5301 17.7824 25.7812 15.625 25.7812C13.4676 25.7812 11.7188 27.5301 11.7188 29.6875C11.7188 31.8449 13.4676 33.5938 15.625 33.5938Z" fill="#FFCC80"></path>
+                      <path d="M12.5 35.9375C12.5 32.8125 18.75 32.8125 18.75 35.9375C18.75 39.0625 18.75 39.0625 12.5 39.0625V35.9375Z" fill="#50E3C2"></path>
+                      <path d="M34.375 33.5938C36.5324 33.5938 38.2812 31.8449 38.2812 29.6875C38.2812 27.5301 36.5324 25.7812 34.375 25.7812C32.2176 25.7812 30.4688 27.5301 30.4688 29.6875C30.4688 31.8449 32.2176 33.5938 34.375 33.5938Z" fill="#FFCC80"></path>
+                      <path d="M31.25 35.9375C31.25 32.8125 37.5 32.8125 37.5 35.9375C37.5 39.0625 37.5 39.0625 31.25 39.0625V35.9375Z" fill="#B8E986"></path>
+                      <path d="M25 25L15.625 29.6875" stroke="#999999" stroke-width="1.5625"></path>
+                      <path d="M25 25L34.375 29.6875" stroke="#999999" stroke-width="1.5625"></path>
+                      </svg>
+          `
+            );
+          })
+        }
+        }
+
+    } );
+
+
 
     // Initial render
     renderApps(currentPage);
@@ -1833,12 +2064,17 @@
             }
         });
 
-          terminalApp.close.addEventListener("click", () =>
-              // close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
-              containerWindowDiv.removeChild(terminalApp.window)
+          terminalApp.close.addEventListener("click", () =>{
+            // close_window(terminalApp.window, terminalApp.point, terminalApp.app_name)
+            containerWindowDiv.removeChild(terminalApp.window);
+            if(currentAppIdOpen.has(menuId)){
+              currentSelectedMenu = menuId;
+              handleUnpinToTaskbarClick();
+            }
+          }
           );
           terminalApp.backfull.addEventListener("click", () =>
-              handleMinimize(terminalApp.window)
+             handleHide(terminalApp.window)
           );
           terminalApp.full.addEventListener("click", () => {
             if(isMinimized(terminalApp.window))
@@ -1922,6 +2158,9 @@
             });
 
       }
+
+
+     
 
 
 
@@ -2018,13 +2257,25 @@
     return maxWidth === "50%" && minWidth === "50%";
   }
 
+  function handleHide(hide) {
+    hide.style.transform = 'scale(0.1) translate(0%, 1850%)'; 
+    hide.style.opacity = '0'; 
+    hide.style.width = '150px';
+    hide.style.height = '100px'; 
+
+    setTimeout(() => {
+      hide.style.display = 'none'; 
+  }, 700); 
+
+     
+    }
     function handleMinimize(Minimize) {
       Minimize.style.maxWidth = "50%";
       Minimize.style.minWidth = "50%";
       Minimize.style.height = "50%";
-      insertOrUpdateStyles('sizeWindown', `
+      insertOrUpdateStyles(`sizeWindown_${Minimize.classList[1]}`, `
 
-    .window__taskbar--actions button:nth-child(3)::after {
+     .${Minimize.classList[1]} .window__taskbar--actions button:nth-child(3)::after {
       content: "🗖";
     }
 
@@ -2042,9 +2293,9 @@
       maximize.style.top = `0px`;
 
 
-      insertOrUpdateStyles('sizeWindown', `
+      insertOrUpdateStyles(`sizeWindown_${maximize.classList[1]}`, `
 
-      .window__taskbar--actions button:nth-child(3)::after {
+       .${maximize.classList[1]} .window__taskbar--actions button:nth-child(3)::after {
         content: "🗗";
       }
 
@@ -2070,6 +2321,11 @@
       // Ensure the open element is displayed
       open.style.display = "block";
       open.style.position = "absolute"; // Allow absolute positioning
+      setTimeout(() => {
+        open.style.transform = 'scale(1) translate(0, 0)'; 
+        open.style.opacity = '1'; 
+        
+      }, 1); 
           
       const centerX = 0;
       const centerY = 0;
@@ -2081,12 +2337,11 @@
       // Show other UI elements
       launchpad.container.style.display = "flex";
       launchpad.window.style.display = "none";
-      elements.spotlight_search.style.display = "flex";
+      elements.spotlight_search.style.display = "block";
       elements.widgetsPanel.style.display = "block";
 
-      // Uncomment if needed:
-      // point.style.display = "block";
-      // appName.style.display = "block";
+  
+
     }
 
 
@@ -2102,7 +2357,7 @@
         // elements.navbar.style.display = "none";
         // launchpad.point.style.display = "block";
       } else {
-        elements.spotlight_search.style.display = "flex";
+        elements.spotlight_search.style.display = "block";
         elements.widgetsPanel.style.display = "block";
         launchpad.window.style.display = "none";
         // elements.navbar.style.display = "flex";
